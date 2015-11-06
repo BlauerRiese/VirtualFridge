@@ -19,7 +19,7 @@ public class ItemList extends AppCompatActivity {
 
         Intent intent = getIntent();
         String button = intent.getStringExtra("Button");
-        getSupportActionBar().setTitle(button);
+        /**getSupportActionBar().setTitle(button); **/
 
         if (button.equals(getString(R.string.text_box01))) {
             toolbar.setBackgroundColor(Color.parseColor("#459b63"));

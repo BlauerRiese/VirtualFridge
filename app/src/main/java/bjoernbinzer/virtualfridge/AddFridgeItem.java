@@ -45,8 +45,8 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
         Intent intent = getIntent();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Produkt hinzufügen");
+        /**setSupportActionBar(toolbar); **/
+        /**getSupportActionBar().setTitle("Produkt hinzufügen"); **/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -126,8 +126,8 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                 Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
                 if (category.equals(getString(R.string.default_category))){
-                    fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("@colors/colorVegetables")));
-                    toolbar.setBackgroundColor(Color.parseColor("@colors/colorVegetables"));
+                    fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3F51B5")));
+                    toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
                 }
                 else if(category.equals(getString(R.string.text_box01))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#459b63")));

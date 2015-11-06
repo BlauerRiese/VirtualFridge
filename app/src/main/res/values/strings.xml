@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">VirtualFridge</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="item_product">Produkt:</string>
+    <string name="item_durability">Mind. haltbar bis:</string>
+    <string name="item_quantity">Menge:</string>
+    <string name="item_uom">Einheit:</string>
+    <string name="item_price">Preis:</string>
+    <string name="item_category">Kategorie:</string>
+    <string name="price_optional">Optional</string>
+    <string name="button_neutral">Hinzufügen</string>
+    <string name="title_activity_dialog_">Dialog_Activity</string>
+    <string name="item_uom_hint">kg</string>
+
+    <string name="title_uom_dialog">Einheit wählen:</string>
+    <string name="ToastMessage">Bitte füllen Sie alle Felder aus</string>
+
+    <!--Category name changes only have to be applied here-->
+    <string name="default_category">Wählen Sie eine Kategorie</string>
+    <string name="text_box01">Gemüse</string>
+    <string name="text_box02">Obst</string>
+    <string name="text_box03">Fleisch &amp; Fisch</string>
+    <string name="text_box04">Getränke</string>
+    <string name="text_box05">Gewürze</string>
+    <string name="text_box06">Tiefkühl</string>
+    <string name="text_box07">Saucen &amp; Öle</string>
+    <string name="text_box08">Getreide &amp; Co.</string>
+    <string name="text_box09">Snacks</string>
+    <string name="text_box10">Milch &amp; Eier</string>
+    <string name="text_box11">Sonstiges</string>
+
+    <string-array name="category">
+        <item>@string/default_category</item>
+        <item>@string/text_box01</item>
+        <item>@string/text_box02</item>
+        <item>@string/text_box03</item>
+        <item>@string/text_box04</item>
+        <item>@string/text_box05</item>
+        <item>@string/text_box06</item>
+        <item>@string/text_box07</item>
+        <item>@string/text_box08</item>
+        <item>@string/text_box09</item>
+        <item>@string/text_box10</item>
+        <item>@string/text_box11</item>
+    </string-array>
+    <string name="title_activity_main">MainActivity</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#3F51B5</color>
+
+    <color name="colorVegetables">#459b63</color>
+    <color name="colorFruits">#f1b941</color>
+    <color name="colorMeat">#c15660</color>
+    <color name="colorBeverages">#549dd0</color>
+    <color name="ColorSpicery">#a08f53</color>
+    <color name="colorFrozen">#6bb8bb</color>
+    <color name="colorSauces">#402c38</color>
+    <color name="colorCereals">#c6af52</color>
+    <color name="colorSnacks">#9d63a9</color>
+    <color name="colorMilk">#919aa9</color>
+    <color name="colorOthers">#6bd3a8</color>
+</resources>

@@ -15,6 +15,7 @@
 
     <string name="title_uom_dialog">Einheit wählen:</string>
     <string name="ToastMessage">Bitte füllen Sie alle Felder aus</string>
+    <string name="title_activity_main">MainActivity</string>
 
     <!--Category name changes only have to be applied here-->
     <string name="default_category">Wählen Sie eine Kategorie</string>
@@ -44,5 +45,5 @@
         <item>@string/text_box10</item>
         <item>@string/text_box11</item>
     </string-array>
-    <string name="title_activity_main">MainActivity</string>
+
 </resources>

@@ -18,9 +18,9 @@ public class FridgeDB {
 
     public static void createFridgeDB (Context context){
         if (mDBHelper == null ) mDBHelper = new FridgeDBHelper(context);
-    }
+    }}
 
-    public static long insertEntry(String product, String durability,
+    /** public static long insertEntry(String product, String durability,
                                    double quantity, String uom, double price,
                                    String category ){
 
@@ -65,4 +65,4 @@ public class FridgeDB {
      db.execSQL(SQL_DELETE_ENTRIES);
      mDBHelper.onCreate(db);
      }**/
-}
+

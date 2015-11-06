@@ -89,9 +89,9 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                     return;
                 }
 
-                long rowID = FridgeDB.insertEntry(product, durability, quantity, uom, price, category);
+                /**long rowID = FridgeDB.insertEntry(product, durability, quantity, uom, price, category);
 
-                finish();
+                finish(); **/
             }
         });
 

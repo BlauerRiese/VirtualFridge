@@ -66,7 +66,8 @@
             android:layout_marginLeft="2.5dp"
             android:layout_marginRight="2.5dp"
             android:padding="2.5dp"
-            android:weightSum="4">
+            android:weightSum="4"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewFruits"
@@ -98,7 +99,8 @@
             android:padding="2.5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:weightSum="4">
+            android:weightSum="4"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewMeat"
@@ -143,7 +145,8 @@
             android:background="@drawable/roundcorner04"
             android:padding="2.5dp"
             android:weightSum="4"
-            android:layout_marginRight="5dp">
+            android:layout_marginRight="5dp"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewBeverages"
@@ -174,7 +177,8 @@
             android:background="@drawable/roundcorner05"
             android:layout_marginLeft="2.5dp"
             android:layout_marginRight="2.5dp"
-            android:padding="2.5dp">
+            android:padding="2.5dp"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewSpicery"
@@ -205,7 +209,8 @@
             android:background="@drawable/roundcorner06"
             android:padding="2.5dp"
             android:weightSum="4"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewFrozen"
@@ -250,7 +255,8 @@
             android:background="@drawable/roundcorner07"
             android:padding="2.5dp"
             android:weightSum="4"
-            android:layout_marginRight="5dp">
+            android:layout_marginRight="5dp"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewSauces"
@@ -282,7 +288,8 @@
             android:layout_marginLeft="2.5dp"
             android:layout_marginRight="2.5dp"
             android:padding="2.5dp"
-            android:weightSum="4">
+            android:weightSum="4"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewCereals"
@@ -313,7 +320,8 @@
             android:background="@drawable/roundcorner09"
             android:padding="2.5dp"
             android:weightSum="4"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewSnacks"
@@ -358,7 +366,8 @@
             android:background="@drawable/roundcorner10"
             android:padding="2.5dp"
             android:layout_marginRight="5dp"
-            android:weightSum="4">
+            android:weightSum="4"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewMilk"
@@ -390,7 +399,8 @@
             android:layout_marginLeft="2.5dp"
             android:layout_marginRight="2.5dp"
             android:padding="2.5dp"
-            android:weightSum="4">
+            android:weightSum="4"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/imageViewOthers"

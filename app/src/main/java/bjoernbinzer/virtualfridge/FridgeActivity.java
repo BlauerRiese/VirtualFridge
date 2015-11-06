@@ -71,7 +71,7 @@ public class FridgeActivity extends AppCompatActivity {
         });
 
         LinearLayout meatFishButton = (LinearLayout)findViewById(R.id.linearLayoutMeat);
-        meatFishButton.setOnClickListener(new LinearLayout.OnClickListener() {
+        meatFishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String category = ((TextView) findViewById(R.id.textViewMeat)).getText().toString();
@@ -80,7 +80,7 @@ public class FridgeActivity extends AppCompatActivity {
         });
 
         LinearLayout beveragesButton = (LinearLayout)findViewById(R.id.linearLayoutBeverages);
-        beveragesButton.setOnClickListener(new LinearLayout.OnClickListener() {
+        beveragesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String category = ((TextView) findViewById(R.id.textViewBeverages)).getText().toString();
@@ -159,7 +159,7 @@ public class FridgeActivity extends AppCompatActivity {
 
     public void openListItem(View view, String category) {
         Intent intent = new Intent(this, ItemList.class);
-        /** intent.putExtra(("Button"), category); **/
+        intent.putExtra(("Button"), category);
         startActivity(intent);
     }
 

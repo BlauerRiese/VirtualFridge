@@ -1,8 +1,10 @@
 package bjoernbinzer.virtualfridge;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
@@ -14,14 +16,15 @@ public class ItemList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_item_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        //**setSupportActionBar(toolbar); **/
 
         Intent intent = getIntent();
         String button = intent.getStringExtra("Button");
-        getSupportActionBar().setTitle(button);
+        toolbar.setTitle(button);
+        /**getActionBar().setTitle(button); **/
 
         if (button.equals(getString(R.string.text_box01))) {
             toolbar.setBackgroundColor(Color.parseColor("#459b63"));
@@ -56,5 +59,7 @@ public class ItemList extends AppCompatActivity {
         else if (button.equals(getString(R.string.text_box11))) {
             toolbar.setBackgroundColor(Color.parseColor("#6bd3a8"));
         }
+
+        /** Cursor cursor = FridgeDB.getEntries(button); **/
     }
 }

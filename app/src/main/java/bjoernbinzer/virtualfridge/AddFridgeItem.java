@@ -24,9 +24,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by BJOERN on 06.11.2015.
- */
 public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFragment.Communicator{
 
     private EditText durability;
@@ -210,10 +207,5 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
     @Override
     public void onDialogMessage(String message) {
         uom.setText(message);
-    }
-
-    public void openAddFridgeItem(View view) {
-        Intent intent = new Intent(this, AddFridgeItem.class);
-        startActivity(intent);
     }
 }

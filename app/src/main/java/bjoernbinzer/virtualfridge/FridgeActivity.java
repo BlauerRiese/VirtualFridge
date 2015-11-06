@@ -159,7 +159,7 @@ public class FridgeActivity extends AppCompatActivity {
 
     public void openListItem(View view, String category) {
         Intent intent = new Intent(this, ItemList.class);
-        intent.putExtra(new String("Button"), category);
+        intent.putExtra(("Button"), category);
         startActivity(intent);
     }
 

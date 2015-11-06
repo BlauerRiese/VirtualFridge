@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:background="#cfd8dc">
 
         <LinearLayout
             android:id="@+id/linearLayoutVegetables"
@@ -126,15 +127,15 @@
     <Space
         android:id="@+id/firstSpace"
         android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:background="#ccdfee" />
+        android:layout_height="15dp" />
 
     <TableRow
         android:id="@+id/secondRow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:background="#cfd8dc">
 
         <LinearLayout
             android:id="@+id/linearLayoutBeverages"
@@ -236,15 +237,15 @@
     <Space
         android:id="@+id/secondSpace"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="#ccdfee" />
+        android:layout_height="15dp" />
 
     <TableRow
         android:id="@+id/thirdRow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:background="#cfd8dc">
 
         <LinearLayout
             android:id="@+id/linearLayoutSauces"
@@ -271,7 +272,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="bottom|center"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:gravity="bottom"
                 android:text="@string/text_box07"
                 android:textColor="#ffffff"
@@ -347,15 +348,15 @@
     <Space
         android:id="@+id/thirdSpace"
         android:layout_width="20dp"
-        android:layout_height="15dp"
-        android:background="#ccdfee" />
+        android:layout_height="15dp" />
 
     <TableRow
         android:id="@+id/fourthRow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:background="#cfd8dc">
 
         <LinearLayout
             android:id="@+id/linearLayoutMilk"
@@ -427,7 +428,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="#ffffff">
 
         </LinearLayout>
     </TableRow>

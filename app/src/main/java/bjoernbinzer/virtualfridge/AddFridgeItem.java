@@ -128,50 +128,62 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                 if (category.equals(getString(R.string.default_category))){
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3F51B5")));
                     toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
+                    toolbar.setTitle(category);
                 }
                 else if(category.equals(getString(R.string.text_box01))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#459b63")));
                     toolbar.setBackgroundColor(Color.parseColor("#459b63"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box02))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#f1b941")));
                     toolbar.setBackgroundColor(Color.parseColor("#f1b941"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box03))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#c15660")));
                     toolbar.setBackgroundColor(Color.parseColor("#c15660"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box04))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#549dd0")));
                     toolbar.setBackgroundColor(Color.parseColor("#549dd0"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box05))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#a08f53")));
                     toolbar.setBackgroundColor(Color.parseColor("#a08f53"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box06))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6bb8bb")));
                     toolbar.setBackgroundColor(Color.parseColor("#6bb8bb"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box07))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#402c38")));
                     toolbar.setBackgroundColor(Color.parseColor("#402c38"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box08))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#c6af52")));
                     toolbar.setBackgroundColor(Color.parseColor("#c6af52"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box09))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9d63a9")));
                     toolbar.setBackgroundColor(Color.parseColor("#9d63a9"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box10))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#919aa9")));
                     toolbar.setBackgroundColor(Color.parseColor("#919aa9"));
+                    toolbar.setTitle(category);
                 }
                 else if (category.equals(getString(R.string.text_box11))) {
                     fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6bd3a8")));
                     toolbar.setBackgroundColor(Color.parseColor("#6bd3a8"));
+                    toolbar.setTitle(category);
                 }
             }
             @Override

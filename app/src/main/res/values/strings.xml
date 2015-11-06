@@ -13,6 +13,8 @@
     <string name="title_activity_dialog_">Dialog_Activity</string>
     <string name="item_uom_hint">kg</string>
 
+    <string name="name_add_item">Produkt hinzufügen</string>
+
     <string name="title_uom_dialog">Einheit wählen:</string>
     <string name="ToastMessage">Bitte füllen Sie alle Felder aus</string>
     <string name="title_activity_main">MainActivity</string>

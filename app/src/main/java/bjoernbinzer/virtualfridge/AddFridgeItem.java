@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -89,9 +90,9 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                     return;
                 }
 
-                /**long rowID = FridgeDB.insertEntry(product, durability, quantity, uom, price, category);
+                //long rowID = FridgeDB.insertEntry(product, durability, quantity, uom, price, category);
 
-                finish(); **/
+                finish();
             }
         });
 

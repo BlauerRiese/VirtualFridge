@@ -60,6 +60,7 @@ public class ItemList extends AppCompatActivity {
             toolbar.setBackgroundColor(Color.parseColor("#6bd3a8"));
         }
 
-        /** Cursor cursor = FridgeDB.getEntries(button); **/
+        //Cursor cursor = FridgeDB.getEntries(button);
+
     }
 }

@@ -11,18 +11,30 @@ import android.database.sqlite.SQLiteDatabase;
 /* Interface for FridgeDB access */
 
 public class FridgeDB {
+    public static Cursor cursor;
+    public static long newRowId;
+
+    private static String[] columns = {
+            FridgeDBHelper.COLUMN_ENTRY_ID,
+            FridgeDBHelper.COLUMN_PRODUCT,
+            FridgeDBHelper.COLUMN_DURABILITY,
+            FridgeDBHelper.COLUMN_PRICE,
+            FridgeDBHelper.COLUMN_QUANTITY,
+            FridgeDBHelper.COLUMN_UOM,
+            FridgeDBHelper.COLUMN_CATEGORY
+    };
 
     private static FridgeDBHelper mDBHelper;
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FridgeDBHelper.TABLE_NAME;
 
-    public static void createFridgeDB (Context context){
-        if (mDBHelper == null ) mDBHelper = new FridgeDBHelper(context);
-    }}
+    public static void createFridgeDB(Context context) {
+        if (mDBHelper == null) mDBHelper = new FridgeDBHelper(context);
+    }
 
-    /** public static long insertEntry(String product, String durability,
+    public static long insertEntry(String product, String durability,
                                    double quantity, String uom, double price,
-                                   String category ){
+                                   String category) {
 
         // Gets the data repository in write mode
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
@@ -37,28 +49,24 @@ public class FridgeDB {
         values.put(FridgeDBHelper.COLUMN_CATEGORY, category);
 
         //Insert the new row, returning the primary key of the new row
-        long newRowId;
-        return newRowId = db.insert(FridgeDBHelper.TABLE_NAME, null,values);
+        newRowId = db.insert(FridgeDBHelper.TABLE_NAME, null, values);
+
+        //cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, "ID + " + newRowId, null, null, null, null);
+        //cursor.moveToFirst();
+        return newRowId;
+
     }
 
-    public static Cursor getEntries(String category){
+    public static Cursor getEntries(String category) {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
-        String[] columns = {
-                FridgeDBHelper.COLUMN_ENTRY_ID,
-                FridgeDBHelper.COLUMN_PRODUCT,
-                FridgeDBHelper.COLUMN_DURABILITY,
-                FridgeDBHelper.COLUMN_PRICE,
-                FridgeDBHelper.COLUMN_QUANTITY,
-                FridgeDBHelper.COLUMN_UOM,
-                FridgeDBHelper.COLUMN_CATEGORY
-        };
-        String[] selectionArgs = { category };
+        String[] selectionArgs = {category};
 
-        Cursor cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_CATEGORY + "=?", selectionArgs, null, null, null, null);
+        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_CATEGORY + "=?", selectionArgs, null, null, null, null);
 
         return cursor;
     }
+}
 
     /**public static  void deleteTable() {
      SQLiteDatabase db = mDBHelper.getWritableDatabase();

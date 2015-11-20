@@ -8,11 +8,20 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by BJOERN on 06.11.2015.
  */
 public class ItemList extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +69,29 @@ public class ItemList extends AppCompatActivity {
             toolbar.setBackgroundColor(Color.parseColor("#6bd3a8"));
         }
 
-        //Cursor cursor = FridgeDB.getEntries(button);
-
+        Cursor cursor = FridgeDB.getEntries(button);
+        List<FridgeItem> productList = new ArrayList<FridgeItem>();
+        List<String> productNameList = new ArrayList<String>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(1);
+                Date durability = new Date();
+                try {
+                    durability = sdf.parse(cursor.getString(2));
+                } catch(Exception e) {};
+                double quantity = Double.parseDouble(cursor.getString(4));
+                String uom = cursor.getString(5);
+                double price = Double.parseDouble(cursor.getString(3));
+                String category = cursor.getString(6);
+                FridgeItem product = new FridgeItem(name, durability, quantity, uom, price, category);
+                productList.add(product);
+                productNameList.add(name);
+            } while (cursor.moveToNext());
+        }
+        ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
+                                    android.R.layout.simple_list_item_1, productNameList);
+        ListView lv = (ListView)findViewById(R.id.fridgeItemList);
+        lv.setAdapter(adapter);
     }
 }

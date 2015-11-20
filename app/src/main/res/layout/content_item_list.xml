@@ -12,4 +12,10 @@
     tools:context="bjoernbinzer.myvirtualfridge.ItemList"
     tools:showIn="@layout/activity_item_list">
 
+    <ListView
+        android:id="@+id/fridgeItemList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        > </ListView>
+
 </RelativeLayout>

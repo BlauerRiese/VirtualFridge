@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FridgeDBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "fridge.db";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
     public static final String TABLE_NAME = "ProductList";
     public static final String COLUMN_ENTRY_ID = "entryid";
     public static final String COLUMN_PRODUCT = "product";
@@ -25,9 +25,9 @@ public class FridgeDBHelper extends SQLiteOpenHelper {
                     COLUMN_ENTRY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_PRODUCT + " TEXT NOT NULL, " +
                     COLUMN_DURABILITY + " TEXT NOT NULL, " +
-                    COLUMN_QUANTITY + " DOUBLE(6,2) NOT NULL, " +
+                    COLUMN_QUANTITY + " TEXT NOT NULL, " +
                     COLUMN_UOM + " TEXT NOT NULL, " +
-                    COLUMN_PRICE + " DOUBLE(5,2), " +
+                    COLUMN_PRICE + " TEXT, " +
                     COLUMN_CATEGORY + " TEXT NOT NULL );";
 
     public FridgeDBHelper(Context context) {

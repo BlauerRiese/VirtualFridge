@@ -43,16 +43,14 @@ public class FridgeDB {
         ContentValues values = new ContentValues();
         values.put(FridgeDBHelper.COLUMN_PRODUCT, product);
         values.put(FridgeDBHelper.COLUMN_DURABILITY, durability);
-        values.put(FridgeDBHelper.COLUMN_QUANTITY, quantity);
+        values.put(FridgeDBHelper.COLUMN_QUANTITY, String.valueOf(quantity));
         values.put(FridgeDBHelper.COLUMN_UOM, uom);
-        values.put(FridgeDBHelper.COLUMN_PRICE, price);
+        values.put(FridgeDBHelper.COLUMN_PRICE, String.valueOf(price));
         values.put(FridgeDBHelper.COLUMN_CATEGORY, category);
 
         //Insert the new row, returning the primary key of the new row
         newRowId = db.insert(FridgeDBHelper.TABLE_NAME, null, values);
 
-        //cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, "ID + " + newRowId, null, null, null, null);
-        //cursor.moveToFirst();
         return newRowId;
 
     }

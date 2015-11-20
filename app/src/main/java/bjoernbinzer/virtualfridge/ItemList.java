@@ -90,7 +90,7 @@ public class ItemList extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-                                    android.R.layout.simple_list_item_1, productNameList);
+                                    R.layout.item_list_view, productNameList);
         ListView lv = (ListView)findViewById(R.id.fridgeItemList);
         lv.setAdapter(adapter);
     }

@@ -73,6 +73,7 @@ public class ItemList extends AppCompatActivity {
         List<FridgeItem> productList = new ArrayList<FridgeItem>();
         List<String> productNameList = new ArrayList<String>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String item;
         if (cursor.moveToFirst()) {
             do {
                 String name = cursor.getString(1);
@@ -86,9 +87,15 @@ public class ItemList extends AppCompatActivity {
                 String category = cursor.getString(6);
                 FridgeItem product = new FridgeItem(name, durability, quantity, uom, price, category);
                 productList.add(product);
-                productNameList.add(name);
+                if(uom.equals("Stück")){
+                    item = quantity + " " +name;
+                }else{
+                    item = quantity + " " + uom + " " +name;
+                }
+                productNameList.add(item);
             } while (cursor.moveToNext());
         }
+
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
                                     R.layout.item_list_view, productNameList);
         ListView lv = (ListView)findViewById(R.id.fridgeItemList);

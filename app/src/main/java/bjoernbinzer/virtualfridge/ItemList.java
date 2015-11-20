@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ public class ItemList extends AppCompatActivity {
         //**setSupportActionBar(toolbar); **/
 
         Intent intent = getIntent();
-        String button = intent.getStringExtra("Button");
+        final String button = intent.getStringExtra("Button");
         toolbar.setTitle(button);
         /**getActionBar().setTitle(button); **/
 
@@ -70,12 +73,13 @@ public class ItemList extends AppCompatActivity {
         }
 
         Cursor cursor = FridgeDB.getEntries(button);
-        List<FridgeItem> productList = new ArrayList<FridgeItem>();
+        final List<FridgeItem> productList = new ArrayList<FridgeItem>();
         List<String> productNameList = new ArrayList<String>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String item;
         if (cursor.moveToFirst()) {
             do {
+                String id = cursor.getString(0);
                 String name = cursor.getString(1);
                 Date durability = new Date();
                 try {
@@ -85,7 +89,7 @@ public class ItemList extends AppCompatActivity {
                 String uom = cursor.getString(5);
                 double price = Double.parseDouble(cursor.getString(3));
                 String category = cursor.getString(6);
-                FridgeItem product = new FridgeItem(name, durability, quantity, uom, price, category);
+                FridgeItem product = new FridgeItem(id, name, durability, quantity, uom, price, category);
                 productList.add(product);
                 if(uom.equals("Stück")){
                     item = quantity + " " +name;
@@ -100,5 +104,13 @@ public class ItemList extends AppCompatActivity {
                                     R.layout.item_list_view, productNameList);
         ListView lv = (ListView)findViewById(R.id.fridgeItemList);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new ItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplication(), ItemListDetail.class);
+                intent.putExtra(("Position"), productList.get(position).id);
+                startActivity(intent);
+            }
+        });
     }
 }

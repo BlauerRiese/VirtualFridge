@@ -64,6 +64,15 @@ public class FridgeDB {
 
         return cursor;
     }
+    public static Cursor getEntrybyId(String id){
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+
+        String[] selectionArgs = {id};
+
+        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_ENTRY_ID + "=?", selectionArgs, null, null, null, null);
+
+        return cursor;
+    }
 }
 
     /**public static  void deleteTable() {

@@ -11,7 +11,7 @@
     <string name="price_optional">Optional</string>
     <string name="button_neutral">Hinzufügen</string>
     <string name="title_activity_dialog_">Dialog_Activity</string>
-    <string name="item_uom_hint">kg</string>
+    <string name="item_uom_hint">mg</string>
 
     <string name="name_add_item">Produkt hinzufügen</string>
 
@@ -53,5 +53,6 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_item_list_detail">ItemListDetail</string>
 
 </resources>

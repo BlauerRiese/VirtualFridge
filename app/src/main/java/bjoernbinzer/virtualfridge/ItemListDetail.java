@@ -32,11 +32,6 @@ public class ItemListDetail extends AppCompatActivity {
         final String id = intent.getStringExtra("Position");
         Cursor cursor = FridgeDB.getEntrybyId(id);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         if (cursor.moveToFirst()) {
@@ -58,11 +53,18 @@ public class ItemListDetail extends AppCompatActivity {
                 TextView txtuom = (TextView) findViewById(R.id.uom);
                 txtuom.setText(uom);
                 String price = cursor.getString(3);
-            TextView txtprice = (TextView) findViewById(R.id.price);
-            txtprice.setText(price);
-                category = cursor.getString(6);
+                TextView txtprice = (TextView) findViewById(R.id.price);
+                txtprice.setText(price);
+             category = cursor.getString(6);
                 TextView txtcat = (TextView) findViewById(R.id.category);
                 txtcat.setText(category);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openListItem(view,category);
+                }
+            });
+
 
         }
         if (category.equals(getString(R.string.text_box01))) {
@@ -109,5 +111,9 @@ public class ItemListDetail extends AppCompatActivity {
             fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6bd3a8")));
         }
     }
-
+    public void openListItem(View view, String category) {
+        Intent intent = new Intent(this, ItemList.class);
+        intent.putExtra(("Button"), category);
+        startActivity(intent);
+    }
 }

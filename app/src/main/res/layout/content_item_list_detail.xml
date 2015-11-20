@@ -26,7 +26,9 @@
             android:id="@+id/product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/txt_product"/>
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,7 +38,11 @@
         <TextView
             android:id="@+id/durability"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,7 +52,10 @@
         <TextView
             android:id="@+id/quantity"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,9 +66,12 @@
             android:id="@+id/uom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
              />
 
-        <TextView
+        <TextView android:id="@+id/txt_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/item_price" />
@@ -67,7 +79,11 @@
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +92,11 @@
 
         <TextView android:id="@+id/category"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            />
     </LinearLayout>
 
 </RelativeLayout>

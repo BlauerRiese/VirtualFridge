@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -73,8 +74,8 @@ public class ItemList extends AppCompatActivity {
         }
 
         Cursor cursor = FridgeDB.getEntries(button);
-        final List<FridgeItem> productList = new ArrayList<FridgeItem>();
-        List<String> productNameList = new ArrayList<String>();
+        final ArrayList<FridgeItem> productList = new ArrayList<FridgeItem>();
+        ArrayList<String> productNameList = new ArrayList<String>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String item;
         if (cursor.moveToFirst()) {
@@ -104,7 +105,7 @@ public class ItemList extends AppCompatActivity {
                                     R.layout.item_list_view, productNameList);
         ListView lv = (ListView)findViewById(R.id.fridgeItemList);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new ItemClickListener(){
+        lv.setOnItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplication(), ItemListDetail.class);
@@ -112,5 +113,20 @@ public class ItemList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openItemListDelete(view, button, productList);
+            }
+        });
+    }
+
+    public void openItemListDelete(View view, String category, ArrayList<FridgeItem> productList ) {
+        Intent intent = new Intent(this, ItemListDelete.class);
+        intent.putExtra(("Button"), category);
+        intent.putExtra(("ItemList"), productList);
+        startActivity(intent);
     }
 }

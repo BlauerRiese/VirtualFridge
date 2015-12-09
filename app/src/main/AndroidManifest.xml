@@ -27,6 +27,10 @@
         <activity
             android:name=".ItemListDetail"
             android:label="@string/title_activity_item_list_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ItemListDelete"
+            android:label="@string/title_activity_item_list_delete"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

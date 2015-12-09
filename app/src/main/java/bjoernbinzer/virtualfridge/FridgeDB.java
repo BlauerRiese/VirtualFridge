@@ -55,6 +55,14 @@ public class FridgeDB {
 
     }
 
+    public static boolean deleteEntry (String[] rowIds){
+        // Gets the data repository in write mode
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        //Delete rows; return true if deletion was successful
+        return db.delete(FridgeDBHelper.TABLE_NAME, FridgeDBHelper.COLUMN_ENTRY_ID + "=?", rowIds ) > 0;
+    }
+
     public static Cursor getEntries(String category) {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 

@@ -55,5 +55,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_item_list_detail">ItemListDetail</string>
     <string name="title_activity_item_list_delete">ItemListDelete</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>

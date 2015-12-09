@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#607d8b</color>
     <color name="colorAccent">#3F51B5</color>
 
+    <color name="colorSplash">#FFFFFF</color>
+
     <color name="colorVegetables">#459b63</color>
     <color name="colorFruits">#f1b941</color>
     <color name="colorMeat">#c15660</color>

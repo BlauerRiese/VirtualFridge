@@ -20,9 +20,7 @@ public class DeleteItemAdapter extends ArrayAdapter<FridgeItem> {
         super(context, textViewResourceId, itemList);
         this.itemList = new ArrayList<FridgeItem>();
         this.itemList.addAll(itemList);
-    }
-
-    ;
+    };
 
     private class ViewHolder {
         CheckBox name;
@@ -39,7 +37,17 @@ public class DeleteItemAdapter extends ArrayAdapter<FridgeItem> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.fridge_item_info_delete, parent, false);
             holder = new ViewHolder();
             holder.name = (CheckBox) convertView.findViewById(R.id.checkBox);
+            holder.name.setTag(item);
             convertView.setTag(holder);
+
+            holder.name.setOnClickListener( new View.OnClickListener() {
+                public void onClick(View v) {
+                    CheckBox cb = (CheckBox) v;
+                    FridgeItem item = (FridgeItem) cb.getTag();
+                    item.setSelected(cb.isChecked());
+                    cb.setTag(item);
+                }
+            });
         } else {
             holder = (ViewHolder) convertView.getTag();
         };

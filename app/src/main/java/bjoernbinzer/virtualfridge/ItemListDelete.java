@@ -9,10 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemListDelete extends AppCompatActivity {
 
@@ -71,9 +73,29 @@ public class ItemListDelete extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ListView lv = (ListView)findViewById(R.id.fridgeItemList);
+                ListAdapter adapter = lv.getAdapter();
+                ArrayList<String> rowIds = new ArrayList<String>();
+                CheckBox cb;
 
+                for (int i = 0; i < adapter.getCount(); i++) {
+                    FridgeItem item = (FridgeItem) adapter.getItem(i);
+                    if (item.selected){
+                        rowIds.add(item.id);
+                    }
+                }
+                FridgeDB.deleteEntry(rowIds.toArray(new String[0]));
+                openListItem(view, button);
+                finish();
             }
         });
+    }
+
+    public void openListItem(View view, String category) {
+        Intent intent = new Intent(this, ItemList.class);
+        intent.putExtra(("Button"), category);
+        startActivity(intent);
+        finish();
     }
 
 }

@@ -55,10 +55,10 @@ public class ItemListDetail extends AppCompatActivity {
                 String price = cursor.getString(3);
                 TextView txtprice = (TextView) findViewById(R.id.price);
                 txtprice.setText(price);
-             category = cursor.getString(6);
+                category = cursor.getString(6);
                 TextView txtcat = (TextView) findViewById(R.id.category);
                 txtcat.setText(category);
-            fab.setOnClickListener(new View.OnClickListener() {
+                fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     openListItem(view,category);
@@ -115,5 +115,6 @@ public class ItemListDetail extends AppCompatActivity {
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
         startActivity(intent);
+        finish();
     }
 }

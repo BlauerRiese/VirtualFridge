@@ -128,5 +128,7 @@ public class ItemList extends AppCompatActivity {
         intent.putExtra(("Button"), category);
         intent.putExtra(("ItemList"), productList);
         startActivity(intent);
+        finish();
     }
+
 }

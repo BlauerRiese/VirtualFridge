@@ -10,8 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textColor="@android:color/black"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:gravity="center_vertical"/>

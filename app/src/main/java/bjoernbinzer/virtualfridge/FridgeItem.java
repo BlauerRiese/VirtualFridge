@@ -38,4 +38,8 @@ public class FridgeItem implements Serializable {
         }
       return item;
     }
+
+    public void setSelected (boolean selected){
+        this.selected = selected;
+    }
 }

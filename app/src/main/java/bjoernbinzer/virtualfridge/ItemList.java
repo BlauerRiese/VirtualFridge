@@ -155,11 +155,13 @@ public class ItemList extends AppCompatActivity {
    }
 
     public void openItemListDelete(View view, String category, ArrayList<FridgeItem> productList ) {
-        Intent intent = new Intent(this, ItemListDelete.class);
-        intent.putExtra(("Button"), category);
-        intent.putExtra(("ItemList"), productList);
-        startActivity(intent);
-        finish();
+        if(!productList.isEmpty()) {
+            Intent intent = new Intent(this, ItemListDelete.class);
+            intent.putExtra(("Button"), category);
+            intent.putExtra(("ItemList"), productList);
+            startActivity(intent);
+            finish();
+        }
     }
 
 }

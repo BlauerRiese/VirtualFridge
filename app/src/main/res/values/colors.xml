@@ -7,15 +7,25 @@
     <color name="colorSplash">#FFFFFF</color>
 
     <color name="colorVegetables">#459b63</color>
-    <color name="colorVegetablesFaded">#6d9c7d</color>
+    <color name="colorVegetablesFaded">#82ba95</color>
     <color name="colorFruits">#f1b941</color>
+    <color name="colorFruitsFaded">#f2ce81</color>
     <color name="colorMeat">#c15660</color>
+    <color name="colorMeatFaded">#e4878f</color>
     <color name="colorBeverages">#549dd0</color>
+    <color name="colorBeveragesFaded">#89c2ea</color>
     <color name="colorSpicery">#a08f53</color>
+    <color name="colorSpiceryFaded">#caba81</color>
     <color name="colorFrozen">#6bb8bb</color>
+    <color name="colorFrozenFaded">#8bd3d6</color>
     <color name="colorSauces">#402c38</color>
+    <color name="colorSaucesFaded">#9d738c</color>
     <color name="colorCereals">#c6af52</color>
+    <color name="colorCerealsFaded">#e6d48c</color>
     <color name="colorSnacks">#9d63a9</color>
+    <color name="colorSnacksFaded">#c78dd2</color>
     <color name="colorMilk">#919aa9</color>
+    <color name="colorMilkFaded">#bec9dc</color>
     <color name="colorOthers">#6bd3a8</color>
+    <color name="colorOthersFaded">#99e6c6</color>
 </resources>

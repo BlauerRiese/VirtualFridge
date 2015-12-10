@@ -54,34 +54,54 @@ public class ItemList extends AppCompatActivity {
             imageView.setImageResource(R.drawable.vegetables);
         }
         else if (button.equals(getString(R.string.text_box02))) {
-            toolbar.setBackgroundColor(Color.parseColor("#f1b941"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorFruits));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorFruitsFaded));
+            imageView.setImageResource(R.drawable.fruits);
         }
         else if (button.equals(getString(R.string.text_box03))) {
-            toolbar.setBackgroundColor(Color.parseColor("#c15660"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorMeat));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorMeatFaded));
+            imageView.setImageResource(R.drawable.meat);
         }
         else if (button.equals(getString(R.string.text_box04))) {
-            toolbar.setBackgroundColor(Color.parseColor("#549dd0"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorBeverages));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorBeveragesFaded));
+            imageView.setImageResource(R.drawable.beverages);
         }
         else if (button.equals(getString(R.string.text_box05))) {
-            toolbar.setBackgroundColor(Color.parseColor("#a08f53"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorSpicery));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorSpiceryFaded));
+            imageView.setImageResource(R.drawable.spicery);
         }
         else if (button.equals(getString(R.string.text_box06))) {
-            toolbar.setBackgroundColor(Color.parseColor("#6bb8bb"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorFrozen));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorFrozenFaded));
+            imageView.setImageResource(R.drawable.frozen);
         }
         else if (button.equals(getString(R.string.text_box07))) {
-            toolbar.setBackgroundColor(Color.parseColor("#402c38"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorSauces));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorSaucesFaded));
+            imageView.setImageResource(R.drawable.sauce);
         }
         else if (button.equals(getString(R.string.text_box08))) {
-            toolbar.setBackgroundColor(Color.parseColor("#c6af52"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorCereals));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorCerealsFaded));
+            imageView.setImageResource(R.drawable.cereal);
         }
         else if (button.equals(getString(R.string.text_box09))) {
-            toolbar.setBackgroundColor(Color.parseColor("#9d63a9"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorSnacks));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorSnacksFaded));
+            imageView.setImageResource(R.drawable.snacks);
         }
         else if (button.equals(getString(R.string.text_box10))) {
-            toolbar.setBackgroundColor(Color.parseColor("#919aa9"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorMilk));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorMilkFaded));
+            imageView.setImageResource(R.drawable.milk);
         }
         else if (button.equals(getString(R.string.text_box11))) {
-            toolbar.setBackgroundColor(Color.parseColor("#6bd3a8"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorOthers));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorOthersFaded));
+            imageView.setImageResource(R.drawable.others);
         }
 
         Cursor cursor = FridgeDB.getEntries(button);
@@ -132,7 +152,7 @@ public class ItemList extends AppCompatActivity {
                 openItemListDelete(view, button, productList);
             }
         });
-    }
+   }
 
     public void openItemListDelete(View view, String category, ArrayList<FridgeItem> productList ) {
         Intent intent = new Intent(this, ItemListDelete.class);

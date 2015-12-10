@@ -58,7 +58,7 @@
             android:layout_below="@id/Linear"/>
             <Button
                 android:id="@+id/shoppinglistbutton"
-                android:text="Einkauf beenden"
+                android:text="Einkauf abschließen"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"

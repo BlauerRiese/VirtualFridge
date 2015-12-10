@@ -32,7 +32,7 @@ public class AddUomDialogFragment extends DialogFragment implements View.OnClick
         getDialog().setTitle(R.string.title_uom_dialog);
 
         //NumberPicker for unit of measure
-        final String[] uom = {"mg", "g", "kg", "ml", "l", "Packung", "Dose", "Flasche", "Stück"};
+        final String[] uom = {"mg", "g", "kg", "ml", "l", "Dose", "Tube", "Glas", "Flasche", "Kasten", "Stück", "Packung"};
         uomPicker = (NumberPicker) view.findViewById(R.id.numberPicker_uom);
         uomPicker.setMinValue(0);
         uomPicker.setMaxValue(uom.length - 1);

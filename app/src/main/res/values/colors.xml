@@ -7,10 +7,11 @@
     <color name="colorSplash">#FFFFFF</color>
 
     <color name="colorVegetables">#459b63</color>
+    <color name="colorVegetablesFaded">#6d9c7d</color>
     <color name="colorFruits">#f1b941</color>
     <color name="colorMeat">#c15660</color>
     <color name="colorBeverages">#549dd0</color>
-    <color name="ColorSpicery">#a08f53</color>
+    <color name="colorSpicery">#a08f53</color>
     <color name="colorFrozen">#6bb8bb</color>
     <color name="colorSauces">#402c38</color>
     <color name="colorCereals">#c6af52</color>

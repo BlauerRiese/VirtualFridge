@@ -3,6 +3,7 @@ package bjoernbinzer.virtualfridge;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,16 +34,24 @@ public class ItemList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
+        ImageView imageView = (ImageView) findViewById(R.id.item_list_symbol);
+        LinearLayout listContainer = (LinearLayout) findViewById(R.id.list_container);
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        //**setSupportActionBar(toolbar); **/
+        setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
 
         Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
         toolbar.setTitle(button);
         /**getActionBar().setTitle(button); **/
 
+        View background = getWindow().getDecorView();
+
         if (button.equals(getString(R.string.text_box01))) {
-            toolbar.setBackgroundColor(Color.parseColor("#459b63"));
+            background.setBackgroundColor(getResources().getColor(R.color.colorVegetables));
+            listContainer.setBackgroundColor(getResources().getColor(R.color.colorVegetablesFaded));
+            imageView.setImageResource(R.drawable.vegetables);
         }
         else if (button.equals(getString(R.string.text_box02))) {
             toolbar.setBackgroundColor(Color.parseColor("#f1b941"));
@@ -103,7 +114,7 @@ public class ItemList extends AppCompatActivity {
 
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
                                     R.layout.item_list_view, productNameList);
-        ListView lv = (ListView)findViewById(R.id.fridgeItemList);
+        ListView lv = (ListView)findViewById(R.id.listView);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new ItemClickListener() {
             @Override

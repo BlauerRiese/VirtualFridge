@@ -30,10 +30,10 @@ public class ShoppingListItemAdapter extends ArrayAdapter<ShoppingListItem>{
         ShoppingListItem item = getItem(position);
         ViewHolder holder = null;
 
-        /**if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.shoppinglist_layout, parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.shopping_list_layout, parent, false);
             holder = new ViewHolder();
-            holder.name = (CheckBox) convertView.findViewById(R.id.checkBox_2);
+            holder.name = (CheckBox) convertView.findViewById(R.id.checkBox);
             holder.name.setTag(item);
             convertView.setTag(holder);
 
@@ -48,7 +48,7 @@ public class ShoppingListItemAdapter extends ArrayAdapter<ShoppingListItem>{
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        ;**/
+        ;
 
         holder.name.setText(item.getProduct());
         holder.name.setChecked(false);

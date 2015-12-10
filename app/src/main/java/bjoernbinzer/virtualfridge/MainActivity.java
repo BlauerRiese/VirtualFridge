@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,21 +15,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private int counter;
     private ListView mDrawerList;
-    private ArrayAdapter<String> mAdapter;
+    private ShoppingListItemAdapter mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private String[] array = new String[]{};
+    private ArrayList<ShoppingListItem> array = new ArrayList<ShoppingListItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,6 +181,13 @@ public class MainActivity extends AppCompatActivity
                 addDrawerItems(einkauf);
             }
         });
+        Button shoppinglist = (Button) findViewById(R.id.shoppinglistbutton);
+        shoppinglist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishShopping();
+            }
+        });
     }
 
     @Override
@@ -238,18 +249,26 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void addDrawerItems(EditText einkauf){
-        String product = einkauf.getText().toString();
-        String[] arraylist = new String[counter+1];
-        if (counter != 0) {
-            for (int i = 0; i < array.length; i++) {
-                arraylist[i] = array[i];
-            }
-        }
-        arraylist[counter] = product;
-        array = arraylist;
-        counter += 1;
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, array);
+        String name = einkauf.getText().toString();
+        ShoppingListItem product = new ShoppingListItem(name);
+        array.add(product);
+        mAdapter = new ShoppingListItemAdapter(getApplication(),R.layout.fridge_item_info_delete,array);
         mDrawerList.setAdapter(mAdapter);
         einkauf.setText("");
+    }
+    public void finishShopping(){
+        Intent intent = new Intent(this, AddFridgeItem.class);
+        for(int i = 0; i < array.size(); ){
+            ShoppingListItem item = array.get(i);
+            String product = item.getProduct();
+            array.remove(i);
+            mAdapter.notifyDataSetChanged();
+            mDrawerLayout.closeDrawer(Gravity.LEFT);
+            if(item.selected){
+                intent.putExtra(("Product"), product);
+                startActivity(intent);
+            }
+
+        }
     }
 }

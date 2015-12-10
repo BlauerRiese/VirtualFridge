@@ -44,6 +44,11 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
         setContentView(R.layout.activity_add_fridge_item);
 
         Intent intent = getIntent();
+        String product = intent.getStringExtra("Product");
+        if (!product.isEmpty()){
+            EditText editProduct = (EditText) findViewById(R.id.editText_product);
+            editProduct.setText(product);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         /**setSupportActionBar(toolbar); **/

@@ -53,9 +53,16 @@
             android:choiceMode="singleChoice"
             android:divider="@android:color/black"
             android:dividerHeight="0dp"
-            android:background="@android:color/white"
+            android:background="#D3D3D3"
             android:layout_marginTop="16dp"
             android:layout_below="@id/Linear"/>
+            <Button
+                android:id="@+id/shoppinglistbutton"
+                android:text="Einkauf beenden"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"/>
         </RelativeLayout>
     </android.support.design.widget.NavigationView>
 

@@ -21,20 +21,16 @@ public class ShoppingListItemAdapter extends ArrayAdapter<ShoppingListItem>{
         this.itemList.addAll(itemList);
     }
 
-    ;
-
     private class ViewHolder {
         CheckBox name;
     }
-
-    ;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ShoppingListItem item = getItem(position);
         ViewHolder holder = null;
 
-        if (convertView == null) {
+        /**if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.shoppinglist_layout, parent, false);
             holder = new ViewHolder();
             holder.name = (CheckBox) convertView.findViewById(R.id.checkBox_2);
@@ -52,12 +48,11 @@ public class ShoppingListItemAdapter extends ArrayAdapter<ShoppingListItem>{
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        ;
+        ;**/
 
         holder.name.setText(item.getProduct());
         holder.name.setChecked(false);
         return convertView;
-    };
-
+    }
 }
 

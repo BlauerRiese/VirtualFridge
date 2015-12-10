@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity
         String name = einkauf.getText().toString();
         ShoppingListItem product = new ShoppingListItem(name);
         array.add(product);
-        mAdapter = new ShoppingListItemAdapter(getApplication(),R.layout.shoppinglist_layout,array);
+        mAdapter = new ShoppingListItemAdapter(getApplication(),R.layout.shopping_list_layout,array);
         mDrawerList.setAdapter(mAdapter);
         einkauf.setText("");
     }

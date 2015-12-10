@@ -59,7 +59,7 @@ public class FridgeDB {
         // Gets the data repository in write mode
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
-        //Delete rows; return true if deletion was successful
+        //Delete rows
         int x;
         for(x=0;x<rowIds.length;x++){
             db.delete(FridgeDBHelper.TABLE_NAME, FridgeDBHelper.COLUMN_ENTRY_ID + "=" + rowIds[x], null );

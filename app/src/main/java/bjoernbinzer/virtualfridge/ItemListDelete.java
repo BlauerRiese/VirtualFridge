@@ -1,5 +1,7 @@
 package bjoernbinzer.virtualfridge;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,12 +20,18 @@ import java.util.List;
 
 public class ItemListDelete extends AppCompatActivity {
 
+    public String[] rowsToDelete;
+    public View actualView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list_delete);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         /** setSupportActionBar(toolbar); **/
+
+        rowsToDelete = null;
+        actualView = null;
 
         Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
@@ -73,6 +81,7 @@ public class ItemListDelete extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                actualView = view;
                 ListView lv = (ListView)findViewById(R.id.fridgeItemList);
                 ListAdapter adapter = lv.getAdapter();
                 ArrayList<String> rowIds = new ArrayList<String>();
@@ -84,9 +93,27 @@ public class ItemListDelete extends AppCompatActivity {
                         rowIds.add(item.id);
                     }
                 }
-                FridgeDB.deleteEntry(rowIds.toArray(new String[0]));
-                openListItem(view, button);
-                finish();
+
+                rowsToDelete = rowIds.toArray(new String[0]);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ItemListDelete.this);
+                builder.setTitle("Delete Items");
+                builder.setMessage("Do you really want to delete " + adapter.getCount() + " item(s)?");
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        dialoginterface.dismiss();
+                    }
+                });
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface diaologinterface, int i) {
+                        FridgeDB.deleteEntry(rowsToDelete);
+                        openListItem(actualView, button);
+                        finish();
+                    }
+                });
+
+                builder.show();
+
             }
         });
     }

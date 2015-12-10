@@ -57,4 +57,7 @@
     <string name="title_activity_item_list_delete">ItemListDelete</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
 
+    <string name="drawer_item_delete">Möchten Sie den Eintrag löschen?</string>
+    <string name="delete_confirmation">Löschen</string>
+    <string name="delete_cancel">Abbrechen</string>
 </resources>

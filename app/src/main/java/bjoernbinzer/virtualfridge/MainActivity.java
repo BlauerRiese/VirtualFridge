@@ -1,5 +1,6 @@
 package bjoernbinzer.virtualfridge;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +27,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DeleteDialog.NoticeDialogListener{
 
     private int counter;
     private ListView mDrawerList;
@@ -188,6 +190,14 @@ public class MainActivity extends AppCompatActivity
                 finishShopping();
             }
         });
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DeleteDialog deleteDialog = new DeleteDialog();
+                deleteDialog.setItem(position);
+                deleteDialog.show(getFragmentManager(),"DeleteDialog");
+            }
+        });
     }
 
     @Override
@@ -252,7 +262,7 @@ public class MainActivity extends AppCompatActivity
         String name = einkauf.getText().toString();
         ShoppingListItem product = new ShoppingListItem(name);
         array.add(product);
-        mAdapter = new ShoppingListItemAdapter(getApplication(),R.layout.fridge_item_info_delete,array);
+        mAdapter = new ShoppingListItemAdapter(getApplication(),R.layout.shoppinglist_layout,array);
         mDrawerList.setAdapter(mAdapter);
         einkauf.setText("");
     }
@@ -270,5 +280,19 @@ public class MainActivity extends AppCompatActivity
             }
 
         }
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog, int item) {
+        deleteItem(item);
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
+    }
+    public void deleteItem(int item){
+        mAdapter.remove(array.get(item));
+        mAdapter.notifyDataSetChanged();
     }
 }

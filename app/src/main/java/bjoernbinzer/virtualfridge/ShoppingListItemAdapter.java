@@ -35,9 +35,9 @@ public class ShoppingListItemAdapter extends ArrayAdapter<ShoppingListItem>{
         ViewHolder holder = null;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fridge_item_info_delete, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.shoppinglist_layout, parent, false);
             holder = new ViewHolder();
-            holder.name = (CheckBox) convertView.findViewById(R.id.checkBox);
+            holder.name = (CheckBox) convertView.findViewById(R.id.checkBox_2);
             holder.name.setTag(item);
             convertView.setTag(holder);
 

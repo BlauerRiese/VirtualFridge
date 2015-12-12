@@ -97,9 +97,9 @@ public class ItemListDelete extends AppCompatActivity {
                 rowsToDelete = rowIds.toArray(new String[0]);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ItemListDelete.this);
-                builder.setTitle("Delete Items");
-                builder.setMessage("Do you really want to delete " + adapter.getCount() + " item(s)?");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setTitle("Vorräte löschen");
+                builder.setMessage("Möchten Sie diese " + rowsToDelete.length + " Elemente wirklich löschen?");
+                builder.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialoginterface, int i) {
                         dialoginterface.dismiss();
                     }

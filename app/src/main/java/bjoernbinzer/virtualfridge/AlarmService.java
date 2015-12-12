@@ -1,0 +1,123 @@
+package bjoernbinzer.virtualfridge;
+
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * Created by D060183 on 12.12.2015.
+ */
+public class AlarmService extends Service {
+
+    private static final int NOTIFICATION_ID = 1;
+    private NotificationManager notificationManager;
+    private PendingIntent pendingIntent;
+    final ArrayList<FridgeItem> productList = new ArrayList<FridgeItem>();
+    ArrayList<String> productNameList = new ArrayList<String>();
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startID) {
+        super.onStartCommand(intent, flags, startID);
+        handleCommand(intent);
+        createNotification(productNameList);
+        return START_STICKY;
+    }
+
+    public void handleCommand(Intent intent) {
+        Calendar today = Calendar.getInstance();
+        int day = today.get(Calendar.DATE);
+        int month = today.get(Calendar.MONTH);
+        month++;
+        int year = today.get(Calendar.YEAR);
+        String date = String.valueOf(day) + "." + String.valueOf(month) + "." + String.valueOf(year);
+
+        today.add(Calendar.DATE, 1);
+        int day2 = today.get(Calendar.DATE);
+        int month2 = today.get(Calendar.MONTH);
+        month2++;
+        int year2 = today.get(Calendar.YEAR);
+        String date2 = String.valueOf(day2) + "." + String.valueOf(month2) + "." + String.valueOf(year2);
+
+        today.add(Calendar.DATE, 1);
+        int day3 = today.get(Calendar.DATE);
+        int month3 = today.get(Calendar.MONTH);
+        month3++;
+        int year3 = today.get(Calendar.YEAR);
+        String date3 = String.valueOf(day3) + "." + String.valueOf(month3) + "." + String.valueOf(year3);
+
+        Cursor cursor = FridgeDB.getEntryByDate(date, date2, date3);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String item;
+        if (cursor.moveToFirst()) {
+            do {
+                String id = cursor.getString(0);
+                String name = cursor.getString(1);
+                Date durability = new Date();
+                try {
+                    durability = sdf.parse(cursor.getString(2));
+                } catch(Exception e) {};
+                double quantity = Double.parseDouble(cursor.getString(4));
+                String uom = cursor.getString(5);
+                double price = Double.parseDouble(cursor.getString(3));
+                String category = cursor.getString(6);
+                FridgeItem product = new FridgeItem(id, name, durability, quantity, uom, price, category);
+                productList.add(product);
+                if(uom.equals("Stück")){
+                    item = quantity + " " +name;
+                }else{
+                    item = quantity + " " + uom + " " +name;
+                }
+                productNameList.add(item);
+            } while (cursor.moveToNext());
+        }
+    }
+
+    public void createNotification(ArrayList<String> productNameList) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_fridge)
+                .setContentTitle("Zeit zu kochen!")
+                .setContentText("Einige Produkte laufen demnächst ab.");
+
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        inboxStyle.setBigContentTitle("Zeit zu kochen!");
+        inboxStyle.addLine("Einige Produkte laufen demnächst ab:");
+
+        String[] products = new String[productNameList.size()];
+        for (int i = 0; i < productNameList.size(); i++) {
+            inboxStyle.addLine(productNameList.get(i));
+        }
+
+        builder.setStyle(inboxStyle);
+
+        Intent resultIntent = new Intent(this, SplashScreen.class);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(MainActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(resultPendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
+}

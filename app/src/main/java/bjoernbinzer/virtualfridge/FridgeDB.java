@@ -76,12 +76,24 @@ public class FridgeDB {
 
         return cursor;
     }
+
     public static Cursor getEntrybyId(String id){
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
         String[] selectionArgs = {id};
 
         cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_ENTRY_ID + "=?", selectionArgs, null, null, null, null);
+
+        return cursor;
+    }
+
+    public static Cursor getEntryByDate(String durability, String durability2, String durability3) {
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+
+        String[] selectionArgs = {durability, durability2, durability3};
+
+        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_DURABILITY + "=? OR " +
+                FridgeDBHelper.COLUMN_DURABILITY + "=? OR " + FridgeDBHelper.COLUMN_DURABILITY + "=?", selectionArgs, null, null, null, null);
 
         return cursor;
     }

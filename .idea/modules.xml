@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyVirtualFridge_2.iml" filepath="$PROJECT_DIR$/MyVirtualFridge_2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/VirtualFridge.iml" filepath="$PROJECT_DIR$/VirtualFridge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Virtual Fridge.iml" filepath="$PROJECT_DIR$/Virtual Fridge.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -249,6 +249,8 @@ public class MainActivity extends AppCompatActivity
 
     public void openAddFridgeItem(View view) {
         Intent intent = new Intent(this, AddFridgeItem.class);
+        String product = "";
+        intent.putExtra(("Product"), product);
         startActivity(intent);
     }
 

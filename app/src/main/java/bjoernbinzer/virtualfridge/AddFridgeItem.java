@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -45,10 +46,49 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
 
         Intent intent = getIntent();
         String product = intent.getStringExtra("Product");
+        String intent_category = intent.getStringExtra("Category");
+
         if (!product.isEmpty()){
             EditText editProduct = (EditText) findViewById(R.id.editText_product);
             editProduct.setText(product);
         }
+
+            Spinner spinner = (Spinner) findViewById(R.id.spinner_category);
+            switch (intent_category) {
+                case "Gemüse":
+                    spinner.setSelection(1);
+                    break;
+                case "Obst":
+                    spinner.setSelection(2);
+                    break;
+                case "Fleisch & Fisch":
+                    spinner.setSelection(3);
+                    break;
+                case "Getränke":
+                    spinner.setSelection(4);
+                    break;
+                case "Gewürze":
+                    spinner.setSelection(5);
+                    break;
+                case "Tiefkühl":
+                    spinner.setSelection(6);
+                    break;
+                case "Saucen & Öle":
+                    spinner.setSelection(7);
+                    break;
+                case "Getreide & Co.":
+                    spinner.setSelection(8);
+                    break;
+                case "Snacks":
+                    spinner.setSelection(9);
+                    break;
+                case "Milch & Eier":
+                    spinner.setSelection(10);
+                    break;
+                case "Sonstiges":
+                    spinner.setSelection(11);
+                    break;
+            }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         /**setSupportActionBar(toolbar); **/
@@ -97,7 +137,9 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
 
                 long rowID = FridgeDB.insertEntry(product, durability, quantity, uom, price, category);
 
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 finish();
+                startActivity(intent);
             }
         });
 

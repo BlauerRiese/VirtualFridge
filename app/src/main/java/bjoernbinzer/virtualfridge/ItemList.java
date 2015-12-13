@@ -41,7 +41,7 @@ public class ItemList extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
         toolbar.setTitle(button);
         /**getActionBar().setTitle(button); **/
@@ -136,7 +136,7 @@ public class ItemList extends AppCompatActivity {
                                     R.layout.item_list_view, productNameList);
         ListView lv = (ListView)findViewById(R.id.listView);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new ItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplication(), ItemListDetail.class);
@@ -145,16 +145,28 @@ public class ItemList extends AppCompatActivity {
             }
         });
 
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                openItemListDelete(view, button, productList);
+                return false;
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openItemListDelete(view, button, productList);
+                Intent intent = new Intent(getApplicationContext(), AddFridgeItem.class);
+                String product = "";
+                intent.putExtra(("Product"), product);
+                intent.putExtra(("Category"), button);
+                startActivity(intent);
             }
         });
    }
 
-    public void openItemListDelete(View view, String category, ArrayList<FridgeItem> productList ) {
+    public void openItemListDelete(View view, String category, ArrayList<FridgeItem> productList) {
         if(!productList.isEmpty()) {
             Intent intent = new Intent(this, ItemListDelete.class);
             intent.putExtra(("Button"), category);

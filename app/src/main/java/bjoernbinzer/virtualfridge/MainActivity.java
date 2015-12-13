@@ -169,8 +169,7 @@ public class MainActivity extends AppCompatActivity
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close){
             public void onDrawerOpened(View drawerView){
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Einkaufsliste");
-                getSupportActionBar().show();
+                getSupportActionBar().hide();
                 if (array.isEmpty()) {
                     mAdapter = new ShoppingListItemAdapter(getApplication(), R.layout.shopping_list_layout, array);
                     mDrawerList.setAdapter(mAdapter);
@@ -275,6 +274,8 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, AddFridgeItem.class);
         String product = "";
         intent.putExtra(("Product"), product);
+        String category = "";
+        intent.putExtra(("Category"), category);
         startActivity(intent);
     }
 

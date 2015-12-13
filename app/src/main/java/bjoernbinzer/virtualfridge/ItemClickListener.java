@@ -7,10 +7,12 @@ import android.widget.ListView;
 /**
  * Created by Mareike on 20.11.2015.
  */
-public class ItemClickListener implements ListView.OnItemClickListener{
+public abstract class ItemClickListener implements ListView.OnItemClickListener{
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
+
+    abstract void onItemLongClick(AdapterView<?> parent, View view, int position, long id);
 }

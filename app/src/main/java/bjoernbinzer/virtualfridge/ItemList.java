@@ -19,7 +19,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,27 +34,19 @@ public class ItemList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-
-        /* Find Views from XML
-         Set up required graphical interfaces */
         ImageView imageView = (ImageView) findViewById(R.id.item_list_symbol);
         LinearLayout listContainer = (LinearLayout) findViewById(R.id.list_container);
-        View background = getWindow().getDecorView();
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().hide(); // no action bar in this activity
+        getSupportActionBar().hide();
 
-        // Get the name of the category
         Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
+        toolbar.setTitle(button);
+        /**getActionBar().setTitle(button); **/
 
-        /*
-        * The following if-queries will determine
-        *  - background color for category activity
-        *  - background color for category item list
-        *  - category image displayed as subsitute to headline
-         *
-         *  */
+        View background = getWindow().getDecorView();
 
         if (button.equals(getString(R.string.text_box01))) {
             background.setBackgroundColor(getResources().getColor(R.color.colorVegetables));
@@ -118,16 +109,6 @@ public class ItemList extends AppCompatActivity {
         ArrayList<String> productNameList = new ArrayList<String>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String item;
-
-
-
-        ArrayList<String> productNameArrayL = new ArrayList<String>();
-        ArrayList<String> quantitiesArrayL = new ArrayList<String>();
-        ArrayList<String> uomArrayL = new ArrayList<String>();
-
-
-       // int round = 0;
-
         if (cursor.moveToFirst()) {
             do {
                 String id = cursor.getString(0);
@@ -136,17 +117,10 @@ public class ItemList extends AppCompatActivity {
                 try {
                     durability = sdf.parse(cursor.getString(2));
                 } catch(Exception e) {};
-                String quantityString = cursor.getString(4);
-                double quantity = Double.parseDouble(quantityString);
+                double quantity = Double.parseDouble(cursor.getString(4));
                 String uom = cursor.getString(5);
                 double price = Double.parseDouble(cursor.getString(3));
                 String category = cursor.getString(6);
-
-                //Befüllen der Arrays für ListView
-                productNameArrayL.add(name);
-                quantitiesArrayL.add(quantityString);
-                uomArrayL.add(uom);
-
                 FridgeItem product = new FridgeItem(id, name, durability, quantity, uom, price, category);
                 productList.add(product);
                 if(uom.equals("Stück")){
@@ -158,17 +132,8 @@ public class ItemList extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
 
-        String [] productNameArray = new String[productNameArrayL.size()];
-        productNameArray = productNameArrayL.toArray(productNameArray);
-        String [] quantitiesArray = new String[quantitiesArrayL.size()];
-        quantitiesArray = quantitiesArrayL.toArray(quantitiesArray);
-        String [] uomArray = new String[uomArrayL.size()];
-        uomArray = uomArrayL.toArray(uomArray);
-
-        //  ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-        //                            R.layout.item_list_view, productNameList);
-
-        ItemListAdapter adapter = new ItemListAdapter(getApplicationContext(), productNameArray, quantitiesArray, uomArray);
+        ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
+                                    R.layout.item_list_view, productNameList);
         ListView lv = (ListView)findViewById(R.id.listView);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new ItemClickListener() {

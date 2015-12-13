@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FridgeDBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "fridge.db";
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 4;
     public static final String TABLE_NAME = "ProductList";
     public static final String COLUMN_ENTRY_ID = "entryid";
     public static final String COLUMN_PRODUCT = "product";
@@ -19,6 +19,8 @@ public class FridgeDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_UOM = "uom";
     public static final String COLUMN_PRICE = "price";
     public static final String COLUMN_CATEGORY = "category";
+
+    public static final String TABLE_NAME_SHOPPING_LIST = "ShoppingList";
 
     public static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_NAME + "( " +
@@ -30,6 +32,11 @@ public class FridgeDBHelper extends SQLiteOpenHelper {
                     COLUMN_PRICE + " TEXT, " +
                     COLUMN_CATEGORY + " TEXT NOT NULL );";
 
+    public static final String SQL_CREATE_SHOPPING_LIST =
+            "CREATE TABLE " + TABLE_NAME_SHOPPING_LIST + "( " +
+                    COLUMN_ENTRY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_PRODUCT + " TEXT NOT NULL );";
+
     public FridgeDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -37,6 +44,7 @@ public class FridgeDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE);
+        db.execSQL(SQL_CREATE_SHOPPING_LIST);
     }
 
     @Override

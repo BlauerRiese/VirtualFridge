@@ -77,6 +77,9 @@ public class ItemListDelete extends AppCompatActivity {
         ListView lv = (ListView)findViewById(R.id.fridgeItemList);
         lv.setAdapter(adapter);
 
+        //CheckBox box = (CheckBox) findViewById(R.id.checkBox);
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,18 +9,20 @@ import android.widget.ImageView;
 
 public class SplashScreen extends Activity {
 
+    //Declare length of splash screen
     public final int SPLASH_DISPLAY_LENGTH = 1100;
     AnimationDrawable animation;
 
+    //Show splash screen and start animation
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
         startAnimation();
 
     }
 
+    //Start main activity after splash screen animation
     class Starter implements Runnable {
         public void run() {
             animation.start();
@@ -36,10 +38,12 @@ public class SplashScreen extends Activity {
         }
     }
 
+    //Animation of the splash screen
     private void startAnimation() {
         ImageView imageView = (ImageView) findViewById(R.id.splashView);
 
         animation = new AnimationDrawable();
+        //Switch between the images of the fridge logo
         animation.addFrame(getResources().getDrawable(R.drawable.splash_a), 250);
         animation.addFrame(getResources().getDrawable(R.drawable.splash_b), 250);
         animation.addFrame(getResources().getDrawable(R.drawable.splash_c), 250);
@@ -48,6 +52,8 @@ public class SplashScreen extends Activity {
         animation.setOneShot(true);
 
         imageView.setImageDrawable(animation);
+
+        //Start animation of the splash screen
         imageView.post(new Starter());
     }
 }

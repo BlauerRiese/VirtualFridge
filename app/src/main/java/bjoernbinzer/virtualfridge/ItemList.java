@@ -136,7 +136,7 @@ public class ItemList extends AppCompatActivity {
                                     R.layout.item_list_view, productNameList);
         ListView lv = (ListView)findViewById(R.id.listView);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new ItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplication(), ItemListDetail.class);
@@ -144,6 +144,15 @@ public class ItemList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                openItemListDelete(view, button, productList);
+                return false;
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

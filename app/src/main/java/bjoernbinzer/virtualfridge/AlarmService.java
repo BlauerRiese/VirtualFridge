@@ -33,6 +33,7 @@ public class AlarmService extends Service {
         return null;
     }
 
+    //Handle notification on start
     @Override
     public int onStartCommand(Intent intent, int flags, int startID) {
         super.onStartCommand(intent, flags, startID);
@@ -41,7 +42,9 @@ public class AlarmService extends Service {
         return START_STICKY;
     }
 
+    //Handle notification
     public void handleCommand(Intent intent) {
+        //Get date of today, tomorrow and after tomorrow
         Calendar today = Calendar.getInstance();
         int day = today.get(Calendar.DATE);
         int month = today.get(Calendar.MONTH);
@@ -63,10 +66,13 @@ public class AlarmService extends Service {
         int year3 = today.get(Calendar.YEAR);
         String date3 = String.valueOf(day3) + "." + String.valueOf(month3) + "." + String.valueOf(year3);
 
+        //Read from DB which products are due within the next 3 days
         Cursor cursor = FridgeDB.getEntryByDate(date, date2, date3);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String item;
+
+        //Read DB results
         if (cursor.moveToFirst()) {
             do {
                 String id = cursor.getString(0);
@@ -91,33 +97,44 @@ public class AlarmService extends Service {
         }
     }
 
+    //Create notification to notify user via the homescreen about products that need to be consumed soon
     public void createNotification(ArrayList<String> productNameList) {
+        //Set notification icon, title and text
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_fridge)
                 .setContentTitle("Zeit zu kochen!")
                 .setContentText("Einige Produkte laufen demnächst ab.");
 
+        //Set long text of notification if user expands notification text
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         inboxStyle.setBigContentTitle("Zeit zu kochen!");
         inboxStyle.addLine("Einige Produkte laufen demnächst ab:");
 
+        //List products that are due soon in notification
         String[] products = new String[productNameList.size()];
         for (int i = 0; i < productNameList.size(); i++) {
             inboxStyle.addLine(productNameList.get(i));
         }
 
+        //Apply all settings to the notification
         builder.setStyle(inboxStyle);
 
+        //Open first screen of the application if user clicks on notification
         Intent resultIntent = new Intent(this, SplashScreen.class);
 
+        //Create TaskStackBuilder to handle back navigtion of notification
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(MainActivity.class);
         stackBuilder.addNextIntent(resultIntent);
 
+        //Update current pending intent
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(resultPendingIntent);
 
+        //Get notification service of the system
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        //Build the notification and notify user on home screen
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 }

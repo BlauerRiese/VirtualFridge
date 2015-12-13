@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 /**
  * Created by BJOERN on 06.11.2015.
  */
@@ -96,6 +98,41 @@ public class FridgeDB {
                 FridgeDBHelper.COLUMN_DURABILITY + "=? OR " + FridgeDBHelper.COLUMN_DURABILITY + "=?", selectionArgs, null, null, null, null);
 
         return cursor;
+    }
+
+    public static void saveShoppingList(ArrayList<ShoppingListItem> array){
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        // Create a new map of values, where column names are the keys
+        for (int i = 0; i < array.size(); i++) {
+            String product = array.get(i).getProduct();
+            ContentValues values = new ContentValues();
+            values.put(FridgeDBHelper.COLUMN_PRODUCT, product);
+
+            //Insert the new row, returning the primary key of the new row
+            newRowId = db.insert(FridgeDBHelper.TABLE_NAME_SHOPPING_LIST, null, values);
+        }
+    }
+
+    public static Cursor getShoppingList(){
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+
+        cursor = db.rawQuery("select * from " + FridgeDBHelper.TABLE_NAME_SHOPPING_LIST, null);
+        return cursor;
+    }
+
+    public static void deleteShoppingList() {
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        db.execSQL("delete from " + FridgeDBHelper.TABLE_NAME_SHOPPING_LIST);
+    }
+
+    public static void deleteEntryShoppingList(String product) {
+        // Gets the data repository in write mode
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        //Delete rows
+        db.delete(FridgeDBHelper.TABLE_NAME_SHOPPING_LIST, FridgeDBHelper.COLUMN_PRODUCT + "=" + product, null );
     }
 }
 

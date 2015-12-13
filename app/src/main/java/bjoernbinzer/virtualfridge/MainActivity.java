@@ -2,6 +2,7 @@ package bjoernbinzer.virtualfridge;
 
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private ArrayList<ShoppingListItem> array = new ArrayList<ShoppingListItem>();
+    private ArrayList<ShoppingListItem> arrayNew = new ArrayList<ShoppingListItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,10 +171,32 @@ public class MainActivity extends AppCompatActivity
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().setTitle("Einkaufsliste");
                 getSupportActionBar().show();
+                if (array.isEmpty()) {
+                    mAdapter = new ShoppingListItemAdapter(getApplication(), R.layout.shopping_list_layout, array);
+                    mDrawerList.setAdapter(mAdapter);
+                    Cursor cursor = FridgeDB.getShoppingList();
+                    if (cursor.moveToFirst()) {
+                        do {
+                            String name = cursor.getString(1);
+                            ShoppingListItem product = new ShoppingListItem(name);
+                            array.add(product);
+                        } while (cursor.moveToNext());
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
             }
             public void onDrawerClosed(View view){
                 super.onDrawerClosed(view);
                 getSupportActionBar().hide();
+                FridgeDB.deleteShoppingList();
+                if (!array.isEmpty()){
+                    FridgeDB.saveShoppingList(array);
+                } else {
+                    if (!arrayNew.isEmpty()){
+                        FridgeDB.saveShoppingList(arrayNew);
+                        arrayNew.clear();
+                    }
+                }
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -262,11 +286,13 @@ public class MainActivity extends AppCompatActivity
 
     public void addDrawerItems(EditText einkauf){
         String name = einkauf.getText().toString();
-        ShoppingListItem product = new ShoppingListItem(name);
-        array.add(product);
-        mAdapter = new ShoppingListItemAdapter(getApplication(),R.layout.shopping_list_layout,array);
-        mDrawerList.setAdapter(mAdapter);
-        einkauf.setText("");
+        if (!name.isEmpty()) {
+            ShoppingListItem product = new ShoppingListItem(name);
+            array.add(product);
+            mAdapter = new ShoppingListItemAdapter(getApplication(), R.layout.shopping_list_layout, array);
+            mDrawerList.setAdapter(mAdapter);
+            einkauf.setText("");
+        }
     }
     public void finishShopping(){
         Intent intent = new Intent(this, AddFridgeItem.class);
@@ -279,8 +305,9 @@ public class MainActivity extends AppCompatActivity
             if(item.selected){
                 intent.putExtra(("Product"), product);
                 startActivity(intent);
+            } else {
+                arrayNew.add(item);
             }
-
         }
     }
 
@@ -297,4 +324,6 @@ public class MainActivity extends AppCompatActivity
         mAdapter.remove(array.get(item));
         mAdapter.notifyDataSetChanged();
     }
+
+
 }

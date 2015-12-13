@@ -37,7 +37,7 @@ public class ItemListDelete extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
-        toolbar.setTitle(button);
+        toolbar.setTitle("Löschen");
         final ArrayList<FridgeItem> productList = (ArrayList<FridgeItem>) intent.getSerializableExtra("ItemList");
 
         if (button.equals(getString(R.string.text_box01))) {

@@ -64,7 +64,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        
+        
+        //The following parts describe the different category-buttons.
+        //Every button has its own ClickListener. --> Go to the different CategoryView.
+        
         LinearLayout vegetableButton = (LinearLayout)findViewById(R.id.linearLayoutVegetables);
 
 

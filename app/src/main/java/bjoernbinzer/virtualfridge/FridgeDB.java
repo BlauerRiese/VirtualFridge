@@ -33,7 +33,7 @@ public class FridgeDB {
     }
 
     public static long insertEntry(String product, String durability,
-                                   double quantity, String uom, double price,
+                                   int quantity, String uom, double price,
                                    String category) {
 
         // Gets the data repository in write mode

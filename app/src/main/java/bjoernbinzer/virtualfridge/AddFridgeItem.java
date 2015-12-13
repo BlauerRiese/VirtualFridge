@@ -77,7 +77,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                     Toast.makeText(getApplication(),getString(R.string.ToastMessage), Toast.LENGTH_LONG).show();
                     return;
                 }
-                double quantity = Double.parseDouble(quantitystr);
+                int quantity = Integer.parseInt(quantitystr);
                 EditText editUom = (EditText) findViewById(R.id.editText_uom);
                 String uom = editUom.getText().toString();
                 EditText editPrice = (EditText) findViewById(R.id.editText_price);

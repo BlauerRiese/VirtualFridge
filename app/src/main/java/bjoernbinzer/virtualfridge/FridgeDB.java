@@ -135,10 +135,3 @@ public class FridgeDB {
         db.delete(FridgeDBHelper.TABLE_NAME_SHOPPING_LIST, FridgeDBHelper.COLUMN_PRODUCT + "=" + product, null );
     }
 }
-
-    /**public static  void deleteTable() {
-     SQLiteDatabase db = mDBHelper.getWritableDatabase();
-     db.execSQL(SQL_DELETE_ENTRIES);
-     mDBHelper.onCreate(db);
-     }**/
-

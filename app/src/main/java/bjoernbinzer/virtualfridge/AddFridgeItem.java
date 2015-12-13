@@ -53,6 +53,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
             editProduct.setText(product);
         }
 
+        if (!intent_category.isEmpty()) {
             Spinner spinner = (Spinner) findViewById(R.id.spinner_category);
             switch (intent_category) {
                 case "Gemüse":
@@ -89,6 +90,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                     spinner.setSelection(11);
                     break;
             }
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         /**setSupportActionBar(toolbar); **/

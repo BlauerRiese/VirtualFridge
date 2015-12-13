@@ -295,6 +295,7 @@ public class MainActivity extends AppCompatActivity
             einkauf.setText("");
         }
     }
+
     public void finishShopping(){
         Intent intent = new Intent(this, AddFridgeItem.class);
         for(int i = 0; i < array.size(); ){
@@ -305,6 +306,8 @@ public class MainActivity extends AppCompatActivity
             mDrawerLayout.closeDrawer(Gravity.LEFT);
             if(item.selected){
                 intent.putExtra(("Product"), product);
+                String category = "";
+                intent.putExtra(("Category"), category);
                 startActivity(intent);
             } else {
                 arrayNew.add(item);

@@ -3,6 +3,7 @@ package bjoernbinzer.virtualfridge;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -28,7 +29,8 @@ public class ItemListDelete extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list_delete);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        /** setSupportActionBar(toolbar); **/
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //setSupportActionBar(toolbar);
 
         rowsToDelete = null;
         actualView = null;
@@ -40,36 +42,48 @@ public class ItemListDelete extends AppCompatActivity {
 
         if (button.equals(getString(R.string.text_box01))) {
             toolbar.setBackgroundColor(Color.parseColor("#459b63"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorVegetables)));
+
         }
         else if (button.equals(getString(R.string.text_box02))) {
             toolbar.setBackgroundColor(Color.parseColor("#f1b941"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorFruits)));
         }
         else if (button.equals(getString(R.string.text_box03))) {
             toolbar.setBackgroundColor(Color.parseColor("#c15660"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorMeat)));
         }
         else if (button.equals(getString(R.string.text_box04))) {
             toolbar.setBackgroundColor(Color.parseColor("#549dd0"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorBeverages)));
         }
         else if (button.equals(getString(R.string.text_box05))) {
             toolbar.setBackgroundColor(Color.parseColor("#a08f53"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSpicery)));
         }
         else if (button.equals(getString(R.string.text_box06))) {
             toolbar.setBackgroundColor(Color.parseColor("#6bb8bb"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorFrozen)));
         }
         else if (button.equals(getString(R.string.text_box07))) {
             toolbar.setBackgroundColor(Color.parseColor("#402c38"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSauces)));
         }
         else if (button.equals(getString(R.string.text_box08))) {
             toolbar.setBackgroundColor(Color.parseColor("#c6af52"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorCereals)));
         }
         else if (button.equals(getString(R.string.text_box09))) {
             toolbar.setBackgroundColor(Color.parseColor("#9d63a9"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSnacks)));
         }
         else if (button.equals(getString(R.string.text_box10))) {
             toolbar.setBackgroundColor(Color.parseColor("#919aa9"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorMilk)));
         }
         else if (button.equals(getString(R.string.text_box11))) {
             toolbar.setBackgroundColor(Color.parseColor("#6bd3a8"));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorOthers)));
         }
 
         ListAdapter adapter = new DeleteItemAdapter(getApplicationContext(),
@@ -77,10 +91,6 @@ public class ItemListDelete extends AppCompatActivity {
         ListView lv = (ListView)findViewById(R.id.fridgeItemList);
         lv.setAdapter(adapter);
 
-        //CheckBox box = (CheckBox) findViewById(R.id.checkBox);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

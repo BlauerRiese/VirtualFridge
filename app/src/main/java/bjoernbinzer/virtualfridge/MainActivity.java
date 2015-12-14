@@ -204,6 +204,16 @@ public class MainActivity extends AppCompatActivity
             public void onDrawerOpened(View drawerView){
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().hide();
+
+                //Initialize button to share shopping list
+                ImageButton shareShoppingList = (ImageButton) findViewById(R.id.shareShoppingList);
+                shareShoppingList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                shareShoppingList();
+                }
+                });
+
                 if (array.isEmpty()) {
                     mAdapter = new ShoppingListItemAdapter(getApplication(), R.layout.shopping_list_layout, array);
                     mDrawerList.setAdapter(mAdapter);
@@ -240,6 +250,7 @@ public class MainActivity extends AppCompatActivity
                 addDrawerItems(einkauf);
             }
         });
+
         Button shoppinglist = (Button) findViewById(R.id.shoppinglistbutton);
         shoppinglist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,6 +258,7 @@ public class MainActivity extends AppCompatActivity
                 finishShopping();
             }
         });
+
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -255,14 +267,6 @@ public class MainActivity extends AppCompatActivity
                 deleteDialog.show(getFragmentManager(), "DeleteDialog");
             }
         });
-
-        /**ImageButton shareShoppingList = (ImageButton) findViewById(R.id.shareShoppingList);
-        shareShoppingList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareShoppingList();
-            }
-        });**/
     }
 
     public void setCategoryAlpha() {
@@ -406,8 +410,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void shareShoppingList() {
-        //Share shopping list
-    }
+        String listText = "Einkaufszettel:\n";
+
+        FridgeDB.deleteShoppingList();
+        if (!array.isEmpty()) {
+            FridgeDB.saveShoppingList(array);
+            for(int i = 0; i < array.size(); i++ ){
+                ShoppingListItem item = array.get(i);
+                listText = listText + "- " + item.getProduct() + "\n";
+        }
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, listText);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }}
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog, int item) {

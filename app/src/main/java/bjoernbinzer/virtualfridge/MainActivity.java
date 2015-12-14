@@ -40,7 +40,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DeleteDialog.NoticeDialogListener{
+        implements NavigationView.OnNavigationItemSelectedListener, DeleteDialog.NoticeDialogListener {
 
     private int counter;
     private ListView mDrawerList;
@@ -83,12 +83,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        
-        
+
+
         //The following parts describe the different category-buttons.
         //Every button has its own ClickListener. --> Go to the different CategoryView.
-        
-        LinearLayout vegetableButton = (LinearLayout)findViewById(R.id.linearLayoutVegetables);
+
+        LinearLayout vegetableButton = (LinearLayout) findViewById(R.id.linearLayoutVegetables);
 
 
         vegetableButton.setOnClickListener(new LinearLayout.OnClickListener() {
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout fruitButton = (LinearLayout)findViewById(R.id.linearLayoutFruits);
+        LinearLayout fruitButton = (LinearLayout) findViewById(R.id.linearLayoutFruits);
         fruitButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout meatFishButton = (LinearLayout)findViewById(R.id.linearLayoutMeat);
+        LinearLayout meatFishButton = (LinearLayout) findViewById(R.id.linearLayoutMeat);
         meatFishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout beveragesButton = (LinearLayout)findViewById(R.id.linearLayoutBeverages);
+        LinearLayout beveragesButton = (LinearLayout) findViewById(R.id.linearLayoutBeverages);
         beveragesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout spiceryButton = (LinearLayout)findViewById(R.id.linearLayoutSpicery);
+        LinearLayout spiceryButton = (LinearLayout) findViewById(R.id.linearLayoutSpicery);
         spiceryButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout frozenButton = (LinearLayout)findViewById(R.id.linearLayoutFrozen);
+        LinearLayout frozenButton = (LinearLayout) findViewById(R.id.linearLayoutFrozen);
         frozenButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout saucesButton = (LinearLayout)findViewById(R.id.linearLayoutSauces);
+        LinearLayout saucesButton = (LinearLayout) findViewById(R.id.linearLayoutSauces);
         saucesButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,10 +154,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout cerealsButton = (LinearLayout)findViewById(R.id.linearLayoutCereals);
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewCereals)).getText().toString()).moveToFirst()) {
+        LinearLayout cerealsButton = (LinearLayout) findViewById(R.id.linearLayoutCereals);
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewCereals)).getText().toString()).moveToFirst()) {
             cerealsButton.setAlpha(0.2f);
-        };
+        }
+        ;
         cerealsButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout snacksButton = (LinearLayout)findViewById(R.id.linearLayoutSnacks);
+        LinearLayout snacksButton = (LinearLayout) findViewById(R.id.linearLayoutSnacks);
         snacksButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,10 +176,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout milkButton = (LinearLayout)findViewById(R.id.linearLayoutMilk);
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewMilk)).getText().toString()).moveToFirst()) {
+        LinearLayout milkButton = (LinearLayout) findViewById(R.id.linearLayoutMilk);
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewMilk)).getText().toString()).moveToFirst()) {
             milkButton.setAlpha(0.2f);
-        };
+        }
+        ;
         milkButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,7 +189,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout othersButton = (LinearLayout)findViewById(R.id.linearLayoutOthers);
+        LinearLayout othersButton = (LinearLayout) findViewById(R.id.linearLayoutOthers);
         othersButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,18 +202,18 @@ public class MainActivity extends AppCompatActivity
 
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close){
-            public void onDrawerOpened(View drawerView){
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().hide();
 
                 //Initialize button to share shopping list
                 ImageButton shareShoppingList = (ImageButton) findViewById(R.id.shareShoppingList);
                 shareShoppingList.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                shareShoppingList();
-                }
+                    @Override
+                    public void onClick(View v) {
+                        shareShoppingList();
+                    }
                 });
 
                 if (array.isEmpty()) {
@@ -228,14 +230,15 @@ public class MainActivity extends AppCompatActivity
                 }
                 mAdapter.notifyDataSetChanged();
             }
-            public void onDrawerClosed(View view){
+
+            public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 getSupportActionBar().hide();
                 FridgeDB.deleteShoppingList();
-                if (!array.isEmpty()){
+                if (!array.isEmpty()) {
                     FridgeDB.saveShoppingList(array);
                 } else {
-                    if (!arrayNew.isEmpty()){
+                    if (!arrayNew.isEmpty()) {
                         FridgeDB.saveShoppingList(arrayNew);
                         arrayNew.clear();
                     }
@@ -270,51 +273,62 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setCategoryAlpha() {
-        LinearLayout vegetableButton = (LinearLayout)findViewById(R.id.linearLayoutVegetables);
-        LinearLayout fruitButton = (LinearLayout)findViewById(R.id.linearLayoutFruits);
-        LinearLayout meatButton = (LinearLayout)findViewById(R.id.linearLayoutMeat);
-        LinearLayout milkButton = (LinearLayout)findViewById(R.id.linearLayoutMilk);
-        LinearLayout spiceryButton = (LinearLayout)findViewById(R.id.linearLayoutSpicery);
-        LinearLayout sauceButton = (LinearLayout)findViewById(R.id.linearLayoutSauces);
-        LinearLayout snacksButton = (LinearLayout)findViewById(R.id.linearLayoutSnacks);
-        LinearLayout frozenButton = (LinearLayout)findViewById(R.id.linearLayoutFrozen);
-        LinearLayout cerealButton = (LinearLayout)findViewById(R.id.linearLayoutCereals);
-        LinearLayout otherButton = (LinearLayout)findViewById(R.id.linearLayoutOthers);
-        LinearLayout beveragesButton = (LinearLayout)findViewById(R.id.linearLayoutBeverages);
+        LinearLayout vegetableButton = (LinearLayout) findViewById(R.id.linearLayoutVegetables);
+        LinearLayout fruitButton = (LinearLayout) findViewById(R.id.linearLayoutFruits);
+        LinearLayout meatButton = (LinearLayout) findViewById(R.id.linearLayoutMeat);
+        LinearLayout milkButton = (LinearLayout) findViewById(R.id.linearLayoutMilk);
+        LinearLayout spiceryButton = (LinearLayout) findViewById(R.id.linearLayoutSpicery);
+        LinearLayout sauceButton = (LinearLayout) findViewById(R.id.linearLayoutSauces);
+        LinearLayout snacksButton = (LinearLayout) findViewById(R.id.linearLayoutSnacks);
+        LinearLayout frozenButton = (LinearLayout) findViewById(R.id.linearLayoutFrozen);
+        LinearLayout cerealButton = (LinearLayout) findViewById(R.id.linearLayoutCereals);
+        LinearLayout otherButton = (LinearLayout) findViewById(R.id.linearLayoutOthers);
+        LinearLayout beveragesButton = (LinearLayout) findViewById(R.id.linearLayoutBeverages);
 
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewVegetables)).getText().toString()).moveToFirst()) {
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewVegetables)).getText().toString()).moveToFirst()) {
             vegetableButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewFruits)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewFruits)).getText().toString()).moveToFirst()) {
             fruitButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewMeat)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewMeat)).getText().toString()).moveToFirst()) {
             meatButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewMilk)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewMilk)).getText().toString()).moveToFirst()) {
             milkButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewSpicery)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewSpicery)).getText().toString()).moveToFirst()) {
             spiceryButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewSauces)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewSauces)).getText().toString()).moveToFirst()) {
             sauceButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewSnacks)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewSnacks)).getText().toString()).moveToFirst()) {
             snacksButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewFrozen)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewFrozen)).getText().toString()).moveToFirst()) {
             frozenButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewCereals)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewCereals)).getText().toString()).moveToFirst()) {
             cerealButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewOthers)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewOthers)).getText().toString()).moveToFirst()) {
             otherButton.setAlpha(0.2f);
-        };
-        if(!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewBeverages)).getText().toString()).moveToFirst()) {
+        }
+        ;
+        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewBeverages)).getText().toString()).moveToFirst()) {
             beveragesButton.setAlpha(0.2f);
-        };
+        }
+        ;
     }
 
     @Override
@@ -379,7 +393,7 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void addDrawerItems(EditText einkauf){
+    public void addDrawerItems(EditText einkauf) {
         String name = einkauf.getText().toString();
         if (!name.isEmpty()) {
             ShoppingListItem product = new ShoppingListItem(name);
@@ -390,15 +404,15 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void finishShopping(){
+    public void finishShopping() {
         Intent intent = new Intent(this, AddFridgeItem.class);
-        for(int i = 0; i < array.size(); ){
+        for (int i = 0; i < array.size(); ) {
             ShoppingListItem item = array.get(i);
             String product = item.getProduct();
             array.remove(i);
             mAdapter.notifyDataSetChanged();
             mDrawerLayout.closeDrawer(Gravity.LEFT);
-            if(item.selected){
+            if (item.selected) {
                 intent.putExtra(("Product"), product);
                 String category = "";
                 intent.putExtra(("Category"), category);
@@ -415,7 +429,7 @@ public class MainActivity extends AppCompatActivity
         FridgeDB.deleteShoppingList();
         if (!array.isEmpty()) {
             FridgeDB.saveShoppingList(array);
-            for(int i = 0; i < array.size(); i++ ) {
+            for (int i = 0; i < array.size(); i++) {
                 ShoppingListItem item = array.get(i);
                 listText = listText + "- " + item.getProduct() + "\n";
             }
@@ -439,7 +453,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void deleteItem(int item){
+    public void deleteItem(int item) {
         mAdapter.remove(array.get(item));
         mAdapter.notifyDataSetChanged();
     }
@@ -481,17 +495,19 @@ public class MainActivity extends AppCompatActivity
                 Date durability = new Date();
                 try {
                     durability = sdf.parse(cursor.getString(2));
-                } catch(Exception e) {};
+                } catch (Exception e) {
+                }
+                ;
                 double quantity = Double.parseDouble(cursor.getString(4));
                 String uom = cursor.getString(5);
                 double price = Double.parseDouble(cursor.getString(3));
                 String category = cursor.getString(6);
                 FridgeItem product = new FridgeItem(id, name, durability, quantity, uom, price, category);
                 productList.add(product);
-                if(uom.equals("Stück")){
-                    item = quantity + " " +name;
-                }else{
-                    item = quantity + " " + uom + " " +name;
+                if (uom.equals("Stück")) {
+                    item = quantity + " " + name;
+                } else {
+                    item = quantity + " " + uom + " " + name;
                 }
                 productNameList.add(item);
             } while (cursor.moveToNext());
@@ -501,7 +517,7 @@ public class MainActivity extends AppCompatActivity
     //Create notification to notify user via the homescreen about products that need to be consumed soon
     public void createNotification(ArrayList<String> productNameList) {
 
-        if(!productNameList.isEmpty()) {
+        if (!productNameList.isEmpty()) {
             //Set notification icon, title and text
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.mipmap.ic_fridge)

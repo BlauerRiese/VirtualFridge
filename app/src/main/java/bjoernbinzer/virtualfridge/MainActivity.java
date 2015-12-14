@@ -254,6 +254,14 @@ public class MainActivity extends AppCompatActivity
                 deleteDialog.show(getFragmentManager(),"DeleteDialog");
             }
         });
+
+        Button shareShoppingList = (Button) findViewById(R.id.shareShoppingList);
+        shareShoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareShoppingList();
+            }
+        });
     }
 
     public void setCategoryAlpha() {
@@ -394,6 +402,10 @@ public class MainActivity extends AppCompatActivity
                 arrayNew.add(item);
             }
         }
+    }
+
+    public void shareShoppingList() {
+        //Share shopping list
     }
 
     @Override

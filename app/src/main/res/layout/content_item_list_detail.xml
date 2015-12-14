@@ -49,13 +49,14 @@
             android:layout_height="wrap_content"
             android:text="@string/item_quantity" />
 
-        <TextView
+        <EditText
             android:id="@+id/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="20dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"

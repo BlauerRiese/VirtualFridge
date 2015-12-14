@@ -110,6 +110,15 @@ public class FridgeDB {
                           selectionArgs, null, null, null, null);
         return cursor;
     }
+    public static void updateEntry (String id, String quantity){
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        String[] selectionArgs = {id};
+        ContentValues args = new ContentValues();
+        args.put(FridgeDBHelper.COLUMN_QUANTITY, quantity);
+
+        db.update(FridgeDBHelper.TABLE_NAME, args, FridgeDBHelper.COLUMN_ENTRY_ID + "=?", selectionArgs );
+    }
 
     /************************************************/
     /** METHODS CONCERNING SHOPPING LIST DB TABLE **/

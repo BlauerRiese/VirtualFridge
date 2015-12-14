@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -21,6 +22,8 @@ import java.util.Date;
 
 public class ItemListDetail extends AppCompatActivity {
     private String category;
+    private String quantity;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class ItemListDetail extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        final String id = intent.getStringExtra("Position");
+        id = intent.getStringExtra("Position");
         Cursor cursor = FridgeDB.getEntrybyId(id);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -51,8 +54,14 @@ public class ItemListDetail extends AppCompatActivity {
                 TextView txtdura = (TextView) findViewById(R.id.durability);
                 txtdura.setText(dura);
                 String quantity = cursor.getString(4);
-                TextView txtquant = (TextView) findViewById(R.id.quantity);
+                final EditText txtquant = (EditText) findViewById(R.id.quantity);
                 txtquant.setText(quantity);
+                txtquant.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        txtquant.setText(" ");
+                    }
+                });
                 String uom = cursor.getString(5);
                 TextView txtuom = (TextView) findViewById(R.id.uom);
                 txtuom.setText(uom);
@@ -116,6 +125,11 @@ public class ItemListDetail extends AppCompatActivity {
         }
     }
     public void openListItem(View view, String category) {
+        EditText txtquant = (EditText) findViewById(R.id.quantity);
+        String newquantity = txtquant.getText().toString();
+        if(newquantity != quantity){
+            FridgeDB.updateEntry(id, newquantity);
+        }
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
         startActivity(intent);

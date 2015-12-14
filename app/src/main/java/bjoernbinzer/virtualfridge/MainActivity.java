@@ -263,7 +263,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-
+        //This methods sets the opacity of the particular category view to 0.2 IF the category is empty 
+        //(this means that there is no product in it)
     public void setCategoryAlpha() {
         LinearLayout vegetableButton = (LinearLayout) findViewById(R.id.linearLayoutVegetables);
         LinearLayout fruitButton = (LinearLayout) findViewById(R.id.linearLayoutFruits);
@@ -381,13 +382,12 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
     //This method opens and configurates the ListItem-Window(View)
-    //In this View you can 
     public void openListItem(View view, String category) {
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
         startActivity(intent);
     }
-
+    //This method adss an item to the shopping list (sidebar)
     public void addDrawerItems(EditText einkauf) {
         String name = einkauf.getText().toString();
         if (!name.isEmpty()) {
@@ -449,7 +449,7 @@ public class MainActivity extends AppCompatActivity
     public void onDialogNegativeClick(DialogFragment dialog) {
 
     }
-
+    
     public void deleteItem(int item) {
         mAdapter.remove(array.get(item));
         mAdapter.notifyDataSetChanged();

@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -251,17 +252,17 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DeleteDialog deleteDialog = new DeleteDialog();
                 deleteDialog.setItem(position);
-                deleteDialog.show(getFragmentManager(),"DeleteDialog");
+                deleteDialog.show(getFragmentManager(), "DeleteDialog");
             }
         });
 
-        Button shareShoppingList = (Button) findViewById(R.id.shareShoppingList);
+        /**ImageButton shareShoppingList = (ImageButton) findViewById(R.id.shareShoppingList);
         shareShoppingList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 shareShoppingList();
             }
-        });
+        });**/
     }
 
     public void setCategoryAlpha() {

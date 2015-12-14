@@ -9,8 +9,8 @@ import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
-/**
- * Created by Mareike on 09.12.2015.
+/** Class specifiying the design of the shopping list
+ * Created on 09.12.2015.
  */
 public class ShoppingListItemAdapter extends ArrayAdapter<ShoppingListItem>{
     private ArrayList<ShoppingListItem> itemList;

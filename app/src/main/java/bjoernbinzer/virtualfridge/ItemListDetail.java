@@ -15,6 +15,10 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/** Class specifiying the design of the detail View of a specific Fridge Item
+ * Created on 09.12.2015.
+ */
+
 public class ItemListDetail extends AppCompatActivity {
     private String category;
 

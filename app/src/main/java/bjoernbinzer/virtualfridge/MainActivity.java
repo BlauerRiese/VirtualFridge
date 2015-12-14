@@ -487,18 +487,6 @@ public class MainActivity extends AppCompatActivity
         //Apply all settings to the notification
         builder.setStyle(inboxStyle);
 
-        //Open first screen of the application if user clicks on notification
-        Intent resultIntent = new Intent(this, SplashScreen.class);
-
-        //Create TaskStackBuilder to handle back navigtion of notification
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(MainActivity.class);
-        stackBuilder.addNextIntent(resultIntent);
-
-        //Update current pending intent
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(resultPendingIntent);
-
         //Get notification service of the system
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

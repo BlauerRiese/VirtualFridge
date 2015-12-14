@@ -39,7 +39,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-//This class is about the main features of our application. You can find the ClickListener for the Buttons, the 
+//This class is about the main features of our application. You can find the ClickListener for the Buttons, the shopping list,
+//
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DeleteDialog.NoticeDialogListener {
 
@@ -369,7 +370,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    //This method opens and configurates the AddFridgeItem-Window(View)
+    //In this View you can add different products to the database
     public void openAddFridgeItem(View view) {
         Intent intent = new Intent(this, AddFridgeItem.class);
         String product = "";
@@ -378,7 +380,8 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(("Category"), category);
         startActivity(intent);
     }
-
+    //This method opens and configurates the ListItem-Window(View)
+    //In this View you can 
     public void openListItem(View view, String category) {
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
@@ -395,7 +398,9 @@ public class MainActivity extends AppCompatActivity
             einkauf.setText("");
         }
     }
-
+    
+    //This method closes and finishs the shopping process. If you have a shopping list and picked
+    //the bought products, you can delete them from the shopping list and insert them directly to the database.
     public void finishShopping() {
         Intent intent = new Intent(this, AddFridgeItem.class);
         for (int i = 0; i < array.size(); ) {

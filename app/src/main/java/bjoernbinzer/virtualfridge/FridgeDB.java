@@ -7,15 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-/**
- * Created by BJOERN on 06.11.2015.
+/** Class providing access to the database
+ * Created on 06.11.2015.
  */
-/* Interface for FridgeDB access */
 
 public class FridgeDB {
     public static Cursor cursor;
     public static long newRowId;
-
+    private static FridgeDBHelper mDBHelper;
     private static String[] columns = {
             FridgeDBHelper.COLUMN_ENTRY_ID,
             FridgeDBHelper.COLUMN_PRODUCT,
@@ -26,13 +25,13 @@ public class FridgeDB {
             FridgeDBHelper.COLUMN_CATEGORY
     };
 
-    private static FridgeDBHelper mDBHelper;
-    private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + FridgeDBHelper.TABLE_NAME;
-
     public static void createFridgeDB(Context context) {
+        // Create instance of mDBHelper (Singleton)
         if (mDBHelper == null) mDBHelper = new FridgeDBHelper(context);
     }
+
+    /***************************************************/
+    /** METHODS CONCERNING FRIDGE INVENTORY DB TABLE **/
 
     public static long insertEntry(String product, String durability,
                                    int quantity, String uom, double price,
@@ -52,55 +51,71 @@ public class FridgeDB {
 
         //Insert the new row, returning the primary key of the new row
         newRowId = db.insert(FridgeDBHelper.TABLE_NAME, null, values);
-
         return newRowId;
-
     }
 
     public static void deleteEntry (String[] rowIds){
         // Gets the data repository in write mode
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
-        //Delete rows
+        //Delete selected rows given in imported array rowIds
         int x;
         for(x=0;x<rowIds.length;x++){
-            db.delete(FridgeDBHelper.TABLE_NAME, FridgeDBHelper.COLUMN_ENTRY_ID + "=" + rowIds[x], null );
+            db.delete(FridgeDBHelper.TABLE_NAME,
+                      FridgeDBHelper.COLUMN_ENTRY_ID + "=" + rowIds[x], null );
         }
 
     }
 
     public static Cursor getEntries(String category) {
+        // Gets the data repository in read mode
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
+        //Prepare the selection arguments
         String[] selectionArgs = {category};
 
-        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_CATEGORY + "=?", selectionArgs, null, null, null, null);
-
+        // Run the select SQL statement, returning the values for the chosen category
+        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns,
+                          FridgeDBHelper.COLUMN_CATEGORY + "=?",
+                          selectionArgs, null, null, null, null);
         return cursor;
     }
 
     public static Cursor getEntrybyId(String id){
+        // Gets the data repository in read mode
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
+        // Prepare the selection arguments
         String[] selectionArgs = {id};
 
-        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_ENTRY_ID + "=?", selectionArgs, null, null, null, null);
-
+        // Run the select SQL statement, returning the value for the chosen ID
+        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns,
+                          FridgeDBHelper.COLUMN_ENTRY_ID + "=?",
+                          selectionArgs, null, null, null, null);
         return cursor;
     }
 
     public static Cursor getEntryByDate(String durability, String durability2, String durability3) {
+        // Gets the data repository in read mode
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
+        // Prepare the selection arguments
         String[] selectionArgs = {durability, durability2, durability3};
 
-        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns, FridgeDBHelper.COLUMN_DURABILITY + "=? OR " +
-                FridgeDBHelper.COLUMN_DURABILITY + "=? OR " + FridgeDBHelper.COLUMN_DURABILITY + "=?", selectionArgs, null, null, null, null);
-
+        // Run the select SQL statement, returning the values of items with the chosen durabilities
+        cursor = db.query(FridgeDBHelper.TABLE_NAME, columns,
+                          FridgeDBHelper.COLUMN_DURABILITY + "=? OR " +
+                          FridgeDBHelper.COLUMN_DURABILITY + "=? OR " +
+                          FridgeDBHelper.COLUMN_DURABILITY + "=?",
+                          selectionArgs, null, null, null, null);
         return cursor;
     }
 
+    /************************************************/
+    /** METHODS CONCERNING SHOPPING LIST DB TABLE **/
+
     public static void saveShoppingList(ArrayList<ShoppingListItem> array){
+        // Gets the data repository in write mode
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
@@ -115,23 +130,28 @@ public class FridgeDB {
     }
 
     public static Cursor getShoppingList(){
+        // Gets the data repository in read mode
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
-        cursor = db.rawQuery("select * from " + FridgeDBHelper.TABLE_NAME_SHOPPING_LIST, null);
+        // Run the select SQL statement, returning the entries of the shopping list
+        cursor = db.rawQuery("SELECT * FROM " + FridgeDBHelper.TABLE_NAME_SHOPPING_LIST, null);
         return cursor;
     }
 
     public static void deleteShoppingList() {
-        SQLiteDatabase db = mDBHelper.getWritableDatabase();
-
-        db.execSQL("delete from " + FridgeDBHelper.TABLE_NAME_SHOPPING_LIST);
-    }
-
-    public static void deleteEntryShoppingList(String product) {
         // Gets the data repository in write mode
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
-        //Delete rows
-        db.delete(FridgeDBHelper.TABLE_NAME_SHOPPING_LIST, FridgeDBHelper.COLUMN_PRODUCT + "=" + product, null );
+        // Delete all entries of the shopping list DB table
+        db.execSQL("DELETE FROM " + FridgeDBHelper.TABLE_NAME_SHOPPING_LIST);
+    }
+
+    public static void deleteEntryFromShoppingList(String product) {
+        // Gets the data repository in write mode
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        //Delete row for the chosen product
+        db.delete(FridgeDBHelper.TABLE_NAME_SHOPPING_LIST,
+                  FridgeDBHelper.COLUMN_PRODUCT + "=" + product, null );
     }
 }

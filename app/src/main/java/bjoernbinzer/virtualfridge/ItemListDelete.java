@@ -26,71 +26,85 @@ public class ItemListDelete extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_list_delete);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //setSupportActionBar(toolbar);
 
         rowsToDelete = null;
         actualView = null;
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_item_list_delete);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
         toolbar.setTitle("Löschen");
-        final ArrayList<FridgeItem> productList = (ArrayList<FridgeItem>) intent.getSerializableExtra("ItemList");
+        final ArrayList<FridgeItem> productList =
+                (ArrayList<FridgeItem>) intent.getSerializableExtra("ItemList");
 
+        // Set background color according to category
         if (button.equals(getString(R.string.text_box01))) {
             toolbar.setBackgroundColor(Color.parseColor("#459b63"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorVegetables)));
-
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorVegetables)));
         }
         else if (button.equals(getString(R.string.text_box02))) {
             toolbar.setBackgroundColor(Color.parseColor("#f1b941"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorFruits)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorFruits)));
         }
         else if (button.equals(getString(R.string.text_box03))) {
             toolbar.setBackgroundColor(Color.parseColor("#c15660"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorMeat)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorMeat)));
         }
         else if (button.equals(getString(R.string.text_box04))) {
             toolbar.setBackgroundColor(Color.parseColor("#549dd0"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorBeverages)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorBeverages)));
         }
         else if (button.equals(getString(R.string.text_box05))) {
             toolbar.setBackgroundColor(Color.parseColor("#a08f53"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSpicery)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorSpicery)));
         }
         else if (button.equals(getString(R.string.text_box06))) {
             toolbar.setBackgroundColor(Color.parseColor("#6bb8bb"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorFrozen)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorFrozen)));
         }
         else if (button.equals(getString(R.string.text_box07))) {
             toolbar.setBackgroundColor(Color.parseColor("#402c38"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSauces)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorSauces)));
         }
         else if (button.equals(getString(R.string.text_box08))) {
             toolbar.setBackgroundColor(Color.parseColor("#c6af52"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorCereals)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorCereals)));
         }
         else if (button.equals(getString(R.string.text_box09))) {
             toolbar.setBackgroundColor(Color.parseColor("#9d63a9"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSnacks)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorSnacks)));
         }
         else if (button.equals(getString(R.string.text_box10))) {
             toolbar.setBackgroundColor(Color.parseColor("#919aa9"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorMilk)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorMilk)));
         }
         else if (button.equals(getString(R.string.text_box11))) {
             toolbar.setBackgroundColor(Color.parseColor("#6bd3a8"));
-            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorOthers)));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources()
+                    .getColor(R.color.colorOthers)));
         }
 
+        // Set list adapter specifying design of list
         ListAdapter adapter = new DeleteItemAdapter(getApplicationContext(),
                 R.layout.fridge_item_info_delete, productList);
         ListView lv = (ListView)findViewById(R.id.fridgeItemList);
         lv.setAdapter(adapter);
 
+        // Specify behavior when deletion button is pressed
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +112,6 @@ public class ItemListDelete extends AppCompatActivity {
                 ListView lv = (ListView)findViewById(R.id.fridgeItemList);
                 ListAdapter adapter = lv.getAdapter();
                 ArrayList<String> rowIds = new ArrayList<String>();
-                CheckBox cb;
 
                 for (int i = 0; i < adapter.getCount(); i++) {
                     FridgeItem item = (FridgeItem) adapter.getItem(i);
@@ -109,9 +122,11 @@ public class ItemListDelete extends AppCompatActivity {
 
                 rowsToDelete = rowIds.toArray(new String[0]);
 
+                // Prepare and call deletion dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(ItemListDelete.this);
                 builder.setTitle("Vorräte löschen");
-                builder.setMessage("Möchten Sie diese " + rowsToDelete.length + " Elemente wirklich löschen?");
+                builder.setMessage("Möchten Sie diese(s) " + rowsToDelete.length
+                        + " Element(e) wirklich löschen?");
                 builder.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialoginterface, int i) {
                         dialoginterface.dismiss();
@@ -124,7 +139,6 @@ public class ItemListDelete extends AppCompatActivity {
                         finish();
                     }
                 });
-
                 builder.show();
 
             }
@@ -132,10 +146,10 @@ public class ItemListDelete extends AppCompatActivity {
     }
 
     public void openListItem(View view, String category) {
+        // Open activity displaying items of a specific category
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
         startActivity(intent);
         finish();
     }
-
 }

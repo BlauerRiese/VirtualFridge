@@ -9,8 +9,8 @@ import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
-/**
- * Created by Alina on 09.12.2015.
+/** Class specifying the design of the list on the fridge item deletion screen
+ * Created on 09.12.2015.
  */
 public class DeleteItemAdapter extends ArrayAdapter<FridgeItem> {
 
@@ -24,9 +24,7 @@ public class DeleteItemAdapter extends ArrayAdapter<FridgeItem> {
 
     private class ViewHolder {
         CheckBox name;
-    }
-
-    ;
+    };
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -34,7 +32,8 @@ public class DeleteItemAdapter extends ArrayAdapter<FridgeItem> {
         ViewHolder holder = null;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fridge_item_info_delete, parent, false);
+            convertView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.fridge_item_info_delete, parent, false);
             holder = new ViewHolder();
             holder.name = (CheckBox) convertView.findViewById(R.id.checkBox);
             holder.name.setTag(item);

@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+//This class is about the main features of our application. You can find the ClickListener for the Buttons, the 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DeleteDialog.NoticeDialogListener {
 
@@ -89,8 +90,6 @@ public class MainActivity extends AppCompatActivity
         //Every button has its own ClickListener. --> Go to the different CategoryView.
 
         LinearLayout vegetableButton = (LinearLayout) findViewById(R.id.linearLayoutVegetables);
-
-
         vegetableButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,10 +154,6 @@ public class MainActivity extends AppCompatActivity
         });
 
         LinearLayout cerealsButton = (LinearLayout) findViewById(R.id.linearLayoutCereals);
-        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewCereals)).getText().toString()).moveToFirst()) {
-            cerealsButton.setAlpha(0.2f);
-        }
-        ;
         cerealsButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,10 +172,6 @@ public class MainActivity extends AppCompatActivity
         });
 
         LinearLayout milkButton = (LinearLayout) findViewById(R.id.linearLayoutMilk);
-        if (!FridgeDB.getEntries(((TextView) findViewById(R.id.textViewMilk)).getText().toString()).moveToFirst()) {
-            milkButton.setAlpha(0.2f);
-        }
-        ;
         milkButton.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View view) {

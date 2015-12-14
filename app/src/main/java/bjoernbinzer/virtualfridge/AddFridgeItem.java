@@ -28,6 +28,7 @@ import java.util.Locale;
 
 public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFragment.Communicator{
 
+    // Declaration of GUI Elements and all other required variables
     private EditText durability;
     private EditText uom;
     private DatePickerDialog datePickerDialog;
@@ -45,13 +46,20 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
         setContentView(R.layout.activity_add_fridge_item);
 
         Intent intent = getIntent();
+
+        /* for segue from shopping list: name of the product is automatically synchronized with what
+        was added to the shopping list */
         String product = intent.getStringExtra("Product");
-        String intent_category = intent.getStringExtra("Category");
 
         if (!product.isEmpty()){
             EditText editProduct = (EditText) findViewById(R.id.editText_product);
             editProduct.setText(product);
         }
+
+
+        /* for segue from ItemList add-Button: name of category is automatically synchronized with
+        the name of the category and set over the spinner*/
+        String intent_category = intent.getStringExtra("Category");
 
         if (!intent_category.isEmpty()) {
             Spinner spinner = (Spinner) findViewById(R.id.spinner_category);
@@ -100,7 +108,10 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Insert user input into DB
+
+                // check if mandatory fields are all filled
+                // save all entries of the text fields into local variables
+
                 EditText editProduct = (EditText) findViewById(R.id.editText_product);
                 String product = editProduct.getText().toString();
                 if (product.isEmpty()){
@@ -119,6 +130,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                     Toast.makeText(getApplication(),getString(R.string.ToastMessage), Toast.LENGTH_LONG).show();
                     return;
                 }
+
                 int quantity = Integer.parseInt(quantitystr);
                 EditText editUom = (EditText) findViewById(R.id.editText_uom);
                 String uom = editUom.getText().toString();
@@ -130,6 +142,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                 }else{
                     price = Double.parseDouble(pricestr);
                 }
+
                 Spinner spinnerCategory = (Spinner) findViewById(R.id.spinner_category);
                 String category = spinnerCategory.getSelectedItem().toString();
                 if (category.equals(getString(R.string.default_category))){
@@ -137,14 +150,17 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                     return;
                 }
 
+                // save all local variables in database
                 long rowID = FridgeDB.insertEntry(product, durability, quantity, uom, price, category);
 
+                // go back to Main Activity
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 finish();
                 startActivity(intent);
             }
         });
 
+        // finding GUI elements of this view in XML, setting them up
         dateFormatter = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         Date date = new Date();
         durability = (EditText) findViewById(R.id.editText_durability);
@@ -169,6 +185,8 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
 
         spinner = (Spinner) findViewById(R.id.spinner_category);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            // Change color for Floating Action Button depending on selected category
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 category = parent.getItemAtPosition(position).toString();
@@ -243,6 +261,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
         });
     }
 
+    // setting up the date picker
     public void openDatePickerDialog(View view) {
         c = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(this, listener = new DatePickerDialog.OnDateSetListener() {
@@ -259,6 +278,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
         datePickerDialog.show();
     }
 
+    // setting up the Unit of Measure picker
     public void openUomPickerDialog(View view) {
         FragmentManager manager = getFragmentManager();
 

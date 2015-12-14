@@ -34,149 +34,177 @@ public class ItemList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // setting up view with necessary GUI elements
         setContentView(R.layout.activity_item_list);
-
-        ImageView imageView = (ImageView) findViewById(R.id.item_list_symbol);
+        View activityBackground = getWindow().getDecorView();
+        ImageView categoryIcon = (ImageView) findViewById(R.id.item_list_symbol);
         LinearLayout listContainer = (LinearLayout) findViewById(R.id.list_container);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
+        /*
+        We decided to leave out the ActionBar in this activity and replace it with the symbol of
+        the equivalent category
+         */
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
 
+        /*
+        creating the String for the category from the Button pushed to get to this activity
+         - this string will be used throughout the entire class and is essential to determine
+           category-specific database queries, colors and GUI elements
+         */
         Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
-        toolbar.setTitle(button);
 
-        View background = getWindow().getDecorView();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        // Sets the color of the Toolbar and the Button according to the category
+        /*
+        Sets
+            - background of activity to category color
+            - background of listContainer to faded category color
+            - color of FloatingButton to category color
+            - Category icon to category image
+         */
         if (button.equals(getString(R.string.text_box01))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorVegetables));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorVegetables));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorVegetablesFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorVegetables)));
-            imageView.setImageResource(R.drawable.vegetables);
+            categoryIcon.setImageResource(R.drawable.vegetables);
         }
         else if (button.equals(getString(R.string.text_box02))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorFruits));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorFruits));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorFruitsFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorFruits)));
-            imageView.setImageResource(R.drawable.fruits);
+            categoryIcon.setImageResource(R.drawable.fruits);
         }
         else if (button.equals(getString(R.string.text_box03))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorMeat));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorMeat));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorMeatFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorMeat)));
-            imageView.setImageResource(R.drawable.meat);
+            categoryIcon.setImageResource(R.drawable.meat);
         }
         else if (button.equals(getString(R.string.text_box04))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorBeverages));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorBeverages));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorBeveragesFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorBeverages)));
-            imageView.setImageResource(R.drawable.beverages);
+            categoryIcon.setImageResource(R.drawable.beverages);
         }
         else if (button.equals(getString(R.string.text_box05))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorSpicery));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorSpicery));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorSpiceryFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSpicery)));
-            imageView.setImageResource(R.drawable.spicery);
+            categoryIcon.setImageResource(R.drawable.spicery);
         }
         else if (button.equals(getString(R.string.text_box06))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorFrozen));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorFrozen));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorFrozenFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorFrozen)));
-            imageView.setImageResource(R.drawable.frozen);
+            categoryIcon.setImageResource(R.drawable.frozen);
         }
         else if (button.equals(getString(R.string.text_box07))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorSauces));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorSauces));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorSaucesFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSauces)));
-            imageView.setImageResource(R.drawable.sauce);
+            categoryIcon.setImageResource(R.drawable.sauce);
         }
         else if (button.equals(getString(R.string.text_box08))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorCereals));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorCereals));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorCerealsFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorCereals)));
-            imageView.setImageResource(R.drawable.cereal);
+            categoryIcon.setImageResource(R.drawable.cereal);
         }
         else if (button.equals(getString(R.string.text_box09))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorSnacks));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorSnacks));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorSnacksFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSnacks)));
-            imageView.setImageResource(R.drawable.snacks);
+            categoryIcon.setImageResource(R.drawable.snacks);
         }
         else if (button.equals(getString(R.string.text_box10))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorMilk));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorMilk));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorMilkFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorMilk)));
-            imageView.setImageResource(R.drawable.milk);
+            categoryIcon.setImageResource(R.drawable.milk);
         }
         else if (button.equals(getString(R.string.text_box11))) {
-            background.setBackgroundColor(getResources().getColor(R.color.colorOthers));
+            activityBackground.setBackgroundColor(getResources().getColor(R.color.colorOthers));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorOthersFaded));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorOthers)));
-            imageView.setImageResource(R.drawable.others);
+            categoryIcon.setImageResource(R.drawable.others);
         }
 
+        // Create database cursor to get entries for specific category
         Cursor cursor = FridgeDB.getEntries(button);
+
+        // ArrayList with FridgeItems for passing on to other activities
         final ArrayList<FridgeItem> productList = new ArrayList<FridgeItem>();
-        ArrayList<String> productNameList = new ArrayList<String>();
+
+        // Declaration of Date format for best before date
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        String item;
 
+        // Declaration of three array Lists that will be populated with the content pulled from the database
+        ArrayList<String> productNameArrayList = new ArrayList<String>();
+        ArrayList<String> quantitiesArrayList = new ArrayList<String>();
+        ArrayList<String> uomArrayList = new ArrayList<String>();
 
-
-        ArrayList<String> productNameArrayL = new ArrayList<String>();
-        ArrayList<String> quantitiesArrayL = new ArrayList<String>();
-        ArrayList<String> uomArrayL = new ArrayList<String>();
-
-
-        // int round = 0;
+        /* Iterating through the cursor to get all entries in database while new
+          * data set is still available
+           * */
 
         if (cursor.moveToFirst()) {
             do {
+
+                // for every entry: save all data in local variables first
                 String id = cursor.getString(0);
                 String name = cursor.getString(1);
                 Date durability = new Date();
                 try {
                     durability = sdf.parse(cursor.getString(2));
                 } catch(Exception e) {};
+                double price = Double.parseDouble(cursor.getString(3));
                 String quantityString = cursor.getString(4);
                 double quantity = Double.parseDouble(quantityString);
                 String uom = cursor.getString(5);
-                double price = Double.parseDouble(cursor.getString(3));
                 String category = cursor.getString(6);
 
-                //Befüllen der Arrays für ListView
-                productNameArrayL.add(name);
-                quantitiesArrayL.add(quantityString);
-                uomArrayL.add(uom);
+                //Populating the array Lists
+                productNameArrayList.add(name);
+                quantitiesArrayList.add(quantityString);
+                uomArrayList.add(uom);
 
+                // Creating a FridgeItem object for each entry; adding it to the array list that will be passed on
                 FridgeItem product = new FridgeItem(id, name, durability, quantity, uom, price, category);
                 productList.add(product);
-                if(uom.equals("Stück")){
-                    item = quantity + " " +name;
-                }else{
-                    item = quantity + " " + uom + " " +name;
-                }
-                productNameList.add(item);
+
             } while (cursor.moveToNext());
         }
 
-        String [] productNameArray = new String[productNameArrayL.size()];
-        productNameArray = productNameArrayL.toArray(productNameArray);
-        String [] quantitiesArray = new String[quantitiesArrayL.size()];
-        quantitiesArray = quantitiesArrayL.toArray(quantitiesArray);
-        String [] uomArray = new String[uomArrayL.size()];
-        uomArray = uomArrayL.toArray(uomArray);
+        /*
+        Creating String arrays from the array lists, since ItemListAdapter expects String arrays
+         */
+        String [] productNameArray = new String[productNameArrayList.size()];
+        productNameArray = productNameArrayList.toArray(productNameArray);
+        String [] quantitiesArray = new String[quantitiesArrayList.size()];
+        quantitiesArray = quantitiesArrayList.toArray(quantitiesArray);
+        String [] uomArray = new String[uomArrayList.size()];
+        uomArray = uomArrayList.toArray(uomArray);
 
-        //  ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-        //                            R.layout.item_list_view, productNameList);
-
+        /*  Initialization and set-up of ItemListAdapter */
         ItemListAdapter adapter = new ItemListAdapter(getApplicationContext(), productNameArray, quantitiesArray, uomArray);
+
+        /* Connect ListView lv with ListView in XML*/
         ListView lv = (ListView)findViewById(R.id.listView);
+
+        /* Set Adapter of ListView to adapter created above*/
         lv.setAdapter(adapter);
+
+
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /*
+            Standard Click Listener for ListView-Element:
+            Display of detailed view of List-Item -> ItemListDetail.class
+            */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplication(), ItemListDetail.class);
@@ -187,6 +215,10 @@ public class ItemList extends AppCompatActivity {
         });
 
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            /*
+            Long Click Listener for ListView-Element:
+            Calling openItemListDelete ()
+            */
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 openItemListDelete(view, button, productList);
@@ -195,6 +227,10 @@ public class ItemList extends AppCompatActivity {
         });
 
         fab.setOnClickListener(new View.OnClickListener() {
+             /*
+             Standard Click Listener for Floating Action Button:
+             Segue to Adding new List-item to this specific category -> AddFridgeItem.class
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddFridgeItem.class);
@@ -207,6 +243,9 @@ public class ItemList extends AppCompatActivity {
     }
 
     public void openItemListDelete(View view, String category, ArrayList<FridgeItem> productList ) {
+       /*
+       Segue to ItemListDelete in order to select the items that should be deleted
+        */
         if(!productList.isEmpty()) {
             Intent intent = new Intent(this, ItemListDelete.class);
             intent.putExtra(("Button"), category);

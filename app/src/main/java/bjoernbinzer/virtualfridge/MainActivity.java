@@ -410,14 +410,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void shareShoppingList() {
-        String listText = "Einkaufszettel:\n";
+        String listText = "Einkaufszettel:\n\n";
 
         FridgeDB.deleteShoppingList();
         if (!array.isEmpty()) {
             FridgeDB.saveShoppingList(array);
-            for(int i = 0; i < array.size(); i++ ){
+            for(int i = 0; i < array.size(); i++ ) {
                 ShoppingListItem item = array.get(i);
                 listText = listText + "- " + item.getProduct() + "\n";
+            }
+            listText = listText + "\n**Sent from VirtualFridge**";
         }
 
         Intent sendIntent = new Intent();
@@ -425,7 +427,7 @@ public class MainActivity extends AppCompatActivity
         sendIntent.putExtra(Intent.EXTRA_TEXT, listText);
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
-    }}
+    }
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog, int item) {

@@ -339,6 +339,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        System.exit(0);
     }
 
     @Override

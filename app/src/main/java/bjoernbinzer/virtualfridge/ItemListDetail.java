@@ -35,11 +35,12 @@ public class ItemListDetail extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-
+        // Reads the entry out of the database according to the id of the selected item
         id = intent.getStringExtra("Position");
         Cursor cursor = FridgeDB.getEntrybyId(id);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
+        // Reads the according product name, durability, quantity, uom, price and displays them
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         if (cursor.moveToFirst()) {
                 String name = cursor.getString(1);
@@ -56,6 +57,7 @@ public class ItemListDetail extends AppCompatActivity {
                 String quantity = cursor.getString(4);
                 final EditText txtquant = (EditText) findViewById(R.id.quantity);
                 txtquant.setText(quantity);
+                // Registers a Listener to the quantity edit view
                 txtquant.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -80,6 +82,7 @@ public class ItemListDetail extends AppCompatActivity {
 
 
         }
+        // Sets the color of the Toolbar and the Button according to the category
         if (category.equals(getString(R.string.text_box01))) {
             toolbar.setBackgroundColor(Color.parseColor("#459b63"));
             fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#459b63")));
@@ -124,9 +127,12 @@ public class ItemListDetail extends AppCompatActivity {
             fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6bd3a8")));
         }
     }
+
+    // Closes the Activity and opens the ItemList Activity
     public void openListItem(View view, String category) {
         EditText txtquant = (EditText) findViewById(R.id.quantity);
         String newquantity = txtquant.getText().toString();
+        // Updates the quantity if it was changed
         if(newquantity != quantity){
             FridgeDB.updateEntry(id, newquantity);
         }

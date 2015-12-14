@@ -45,11 +45,11 @@ public class ItemList extends AppCompatActivity {
         Intent intent = getIntent();
         final String button = intent.getStringExtra("Button");
         toolbar.setTitle(button);
-        /**getActionBar().setTitle(button); **/
 
         View background = getWindow().getDecorView();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
+        // Sets the color of the Toolbar and the Button according to the category
         if (button.equals(getString(R.string.text_box01))) {
             background.setBackgroundColor(getResources().getColor(R.color.colorVegetables));
             listContainer.setBackgroundColor(getResources().getColor(R.color.colorVegetablesFaded));

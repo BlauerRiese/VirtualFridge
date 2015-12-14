@@ -44,26 +44,41 @@ public class AlarmService extends Service {
 
     //Handle notification
     public void handleCommand(Intent intent) {
-        //Get date of today, tomorrow and after tomorrow
+        //Get date of today
         Calendar today = Calendar.getInstance();
         int day = today.get(Calendar.DATE);
         int month = today.get(Calendar.MONTH);
+
+        //Add 1 to month as system time starts counting at 0 for January
         month++;
         int year = today.get(Calendar.YEAR);
+
+        //Create date format "dd.MM.yyyy"
         String date = String.valueOf(day) + "." + String.valueOf(month) + "." + String.valueOf(year);
 
+
+        //Get date of tomorrow
         today.add(Calendar.DATE, 1);
         int day2 = today.get(Calendar.DATE);
         int month2 = today.get(Calendar.MONTH);
+
+        //Add 1 to month as system time starts counting at 0 for January
         month2++;
         int year2 = today.get(Calendar.YEAR);
+
+        //Create date format "dd.MM.yyyy"
         String date2 = String.valueOf(day2) + "." + String.valueOf(month2) + "." + String.valueOf(year2);
 
+
+        //Get date of day after tomorrow
         today.add(Calendar.DATE, 1);
         int day3 = today.get(Calendar.DATE);
         int month3 = today.get(Calendar.MONTH);
+
+        //Add 1 to month as system time starts counting at 0 for January
         month3++;
         int year3 = today.get(Calendar.YEAR);
+        //Create date format "dd.MM.yyyy"
         String date3 = String.valueOf(day3) + "." + String.valueOf(month3) + "." + String.valueOf(year3);
 
         //Read from DB which products are due within the next 3 days

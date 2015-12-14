@@ -39,8 +39,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-//This class is about the main features of our application. You can find the ClickListener for the Buttons, the shopping list,
-//
+//This class is about the main features of our application. It initializes the App and launches it. You can find the ClickListener
+//for the Buttons, the shopping list, initialization of other buttons and the invocation processes to other activities.
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DeleteDialog.NoticeDialogListener {
 

@@ -155,6 +155,7 @@ public class ItemList extends AppCompatActivity {
                 Intent intent = new Intent(getApplication(), ItemListDetail.class);
                 intent.putExtra(("Position"), productList.get(position).id);
                 startActivity(intent);
+                finish();
             }
         });
 

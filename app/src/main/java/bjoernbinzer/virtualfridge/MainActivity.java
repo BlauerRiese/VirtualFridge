@@ -419,7 +419,8 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
+    
+    //Describes and configurates the message from "Sharing your ShoppingList"
     public void shareShoppingList() {
         String listText = "Einkaufszettel:\n\n";
 

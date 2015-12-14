@@ -20,6 +20,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -122,6 +123,16 @@ public class ItemList extends AppCompatActivity {
         ArrayList<String> productNameList = new ArrayList<String>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String item;
+
+
+
+        ArrayList<String> productNameArrayL = new ArrayList<String>();
+        ArrayList<String> quantitiesArrayL = new ArrayList<String>();
+        ArrayList<String> uomArrayL = new ArrayList<String>();
+
+
+        // int round = 0;
+
         if (cursor.moveToFirst()) {
             do {
                 String id = cursor.getString(0);
@@ -130,10 +141,17 @@ public class ItemList extends AppCompatActivity {
                 try {
                     durability = sdf.parse(cursor.getString(2));
                 } catch(Exception e) {};
-                double quantity = Double.parseDouble(cursor.getString(4));
+                String quantityString = cursor.getString(4);
+                double quantity = Double.parseDouble(quantityString);
                 String uom = cursor.getString(5);
                 double price = Double.parseDouble(cursor.getString(3));
                 String category = cursor.getString(6);
+
+                //Befüllen der Arrays für ListView
+                productNameArrayL.add(name);
+                quantitiesArrayL.add(quantityString);
+                uomArrayL.add(uom);
+
                 FridgeItem product = new FridgeItem(id, name, durability, quantity, uom, price, category);
                 productList.add(product);
                 if(uom.equals("Stück")){
@@ -145,8 +163,17 @@ public class ItemList extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
 
-        ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-                                    R.layout.item_list_view, productNameList);
+        String [] productNameArray = new String[productNameArrayL.size()];
+        productNameArray = productNameArrayL.toArray(productNameArray);
+        String [] quantitiesArray = new String[quantitiesArrayL.size()];
+        quantitiesArray = quantitiesArrayL.toArray(quantitiesArray);
+        String [] uomArray = new String[uomArrayL.size()];
+        uomArray = uomArrayL.toArray(uomArray);
+
+        //  ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
+        //                            R.layout.item_list_view, productNameList);
+
+        ItemListAdapter adapter = new ItemListAdapter(getApplicationContext(), productNameArray, quantitiesArray, uomArray);
         ListView lv = (ListView)findViewById(R.id.listView);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -177,7 +204,7 @@ public class ItemList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-   }
+    }
 
     public void openItemListDelete(View view, String category, ArrayList<FridgeItem> productList ) {
         if(!productList.isEmpty()) {

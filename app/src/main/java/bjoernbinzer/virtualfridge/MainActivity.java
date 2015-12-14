@@ -500,30 +500,33 @@ public class MainActivity extends AppCompatActivity
 
     //Create notification to notify user via the homescreen about products that need to be consumed soon
     public void createNotification(ArrayList<String> productNameList) {
-        //Set notification icon, title and text
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_fridge)
-                .setContentTitle("Zeit zu kochen!")
-                .setContentText("Einige Produkte laufen demnächst ab.");
 
-        //Set long text of notification if user expands notification text
-        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-        inboxStyle.setBigContentTitle("Zeit zu kochen!");
-        inboxStyle.addLine("Einige Produkte laufen demnächst ab:");
+        if(!productNameList.isEmpty()) {
+            //Set notification icon, title and text
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.mipmap.ic_fridge)
+                    .setContentTitle("Zeit zu kochen!")
+                    .setContentText("Einige Produkte laufen demnächst ab.");
 
-        //List products that are due soon in notification
-        String[] products = new String[productNameList.size()];
-        for (int i = 0; i < productNameList.size(); i++) {
-            inboxStyle.addLine(productNameList.get(i));
+            //Set long text of notification if user expands notification text
+            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+            inboxStyle.setBigContentTitle("Zeit zu kochen!");
+            inboxStyle.addLine("Einige Produkte laufen demnächst ab:");
+
+            //List products that are due soon in notification
+            String[] products = new String[productNameList.size()];
+            for (int i = 0; i < productNameList.size(); i++) {
+                inboxStyle.addLine(productNameList.get(i));
+            }
+
+            //Apply all settings to the notification
+            builder.setStyle(inboxStyle);
+
+            //Get notification service of the system
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            //Build the notification and notify user on home screen
+            notificationManager.notify(0, builder.build());
         }
-
-        //Apply all settings to the notification
-        builder.setStyle(inboxStyle);
-
-        //Get notification service of the system
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        //Build the notification and notify user on home screen
-        notificationManager.notify(0, builder.build());
     }
 }

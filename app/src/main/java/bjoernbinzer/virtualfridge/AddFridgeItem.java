@@ -56,7 +56,7 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
 
         /* for segue from ItemList add-Button: name of category is automatically synchronized with
         the name of the category and set over the spinner*/
-        String intent_category = intent.getStringExtra("Category");
+        final String intent_category = intent.getStringExtra("Category");
 
         if (!intent_category.isEmpty()) {
             Spinner spinner = (Spinner) findViewById(R.id.spinner_category);
@@ -151,10 +151,12 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
                 long rowID = FridgeDB.insertEntry(product, durability, quantity, uom, price, category);
 
                 // go back to Main Activity
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                startActivity(intent);
+                if (!intent_category.equals("shopping")) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
                 finish();
+
             }
         });
 

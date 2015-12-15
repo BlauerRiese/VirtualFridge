@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity
             mDrawerLayout.closeDrawer(Gravity.LEFT);
             if (item.selected) {
                 intent.putExtra(("Product"), product);
-                String category = "";
+                String category = "shopping";
                 intent.putExtra(("Category"), category);
                 startActivity(intent);
             } else {

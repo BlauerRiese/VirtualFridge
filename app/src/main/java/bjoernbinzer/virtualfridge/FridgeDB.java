@@ -64,7 +64,6 @@ public class FridgeDB {
             db.delete(FridgeDBHelper.TABLE_NAME,
                       FridgeDBHelper.COLUMN_ENTRY_ID + "=" + rowIds[x], null );
         }
-
     }
 
     public static Cursor getEntries(String category) {

@@ -39,8 +39,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-//This class is about the main features of our application. It initializes the App and launches it. You can find the ClickListener
-//for the Buttons, the shopping list, initialization of other buttons and the invocation processes to other activities.
+//This class is about the main features of our application. You can find the ClickListener for the Buttons, the shopping list,
+//
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DeleteDialog.NoticeDialogListener {
 
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 openAddFridgeItem(view);
+                finish();
             }
         });
 
@@ -269,8 +270,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-        //This methods sets the opacity of the particular category view to 0.2 IF the category is empty 
-        //(this means that there is no product in it)
+
     public void setCategoryAlpha() {
         LinearLayout vegetableButton = (LinearLayout) findViewById(R.id.linearLayoutVegetables);
         LinearLayout fruitButton = (LinearLayout) findViewById(R.id.linearLayoutFruits);
@@ -388,12 +388,13 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
     //This method opens and configurates the ListItem-Window(View)
+    //In this View you can 
     public void openListItem(View view, String category) {
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
         startActivity(intent);
     }
-    //This method adss an item to the shopping list (sidebar)
+
     public void addDrawerItems(EditText einkauf) {
         String name = einkauf.getText().toString();
         if (!name.isEmpty()) {
@@ -425,8 +426,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-    
-    //Describes and configurates the message from "Sharing your ShoppingList"
+
     public void shareShoppingList() {
         String listText = "Einkaufszettel:\n\n";
 
@@ -456,7 +456,7 @@ public class MainActivity extends AppCompatActivity
     public void onDialogNegativeClick(DialogFragment dialog) {
 
     }
-    
+
     public void deleteItem(int item) {
         mAdapter.remove(array.get(item));
         mAdapter.notifyDataSetChanged();

@@ -4,16 +4,13 @@ import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.SparseIntArray;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -155,8 +152,9 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
 
                 // go back to Main Activity
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                finish();
+
                 startActivity(intent);
+                finish();
             }
         });
 

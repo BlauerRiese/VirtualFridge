@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> productNameList = new ArrayList<String>();
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        this.setCategoryAlpha();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

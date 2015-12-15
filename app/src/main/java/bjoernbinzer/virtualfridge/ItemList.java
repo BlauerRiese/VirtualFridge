@@ -238,6 +238,7 @@ public class ItemList extends AppCompatActivity {
                 intent.putExtra(("Product"), product);
                 intent.putExtra(("Category"), button);
                 startActivity(intent);
+                finish();
             }
         });
     }

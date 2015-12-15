@@ -288,4 +288,11 @@ public class AddFridgeItem extends AppCompatActivity implements AddUomDialogFrag
     public void onDialogMessage(String message) {
         uom.setText(message);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent (this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

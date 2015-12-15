@@ -141,4 +141,13 @@ public class ItemListDetail extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent (this, ItemList.class);
+        intent.putExtra(("Button"), category);
+        startActivity(intent);
+        finish();
+    }
 }
+

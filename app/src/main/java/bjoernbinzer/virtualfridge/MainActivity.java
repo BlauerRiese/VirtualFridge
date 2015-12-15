@@ -335,8 +335,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
         System.exit(0);
     }
@@ -393,6 +391,7 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
         startActivity(intent);
+        finish();
     }
 
     public void addDrawerItems(EditText einkauf) {

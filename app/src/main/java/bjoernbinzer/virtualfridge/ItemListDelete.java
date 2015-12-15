@@ -25,6 +25,7 @@ public class ItemListDelete extends AppCompatActivity {
 
     public String[] rowsToDelete;
     public View actualView;
+    public String button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class ItemListDelete extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         Intent intent = getIntent();
-        final String button = intent.getStringExtra("Button");
+        button = intent.getStringExtra("Button");
         toolbar.setTitle("Löschen");
         final ArrayList<FridgeItem> productList =
                 (ArrayList<FridgeItem>) intent.getSerializableExtra("ItemList");
@@ -151,6 +152,14 @@ public class ItemListDelete extends AppCompatActivity {
         // Open activity displaying items of a specific category
         Intent intent = new Intent(this, ItemList.class);
         intent.putExtra(("Button"), category);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent (this, ItemList.class);
+        intent.putExtra(("Button"), button);
         startActivity(intent);
         finish();
     }

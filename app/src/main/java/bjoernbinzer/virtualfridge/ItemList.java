@@ -222,7 +222,7 @@ public class ItemList extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 openItemListDelete(view, button, productList);
-                return false;
+                return true;
             }
         });
 
